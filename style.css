@@ -7,13 +7,45 @@
     flex-wrap: wrap;
     max-width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 #aboutMe{
     flex-grow: 2;
-    text-align: center;
 }
 
 #display{
     flex-shrink: 1;
+}
+
+#gallery{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10% 0 10%;
+}
+
+.card{
+    width: 100px;
+    height: 150px;
+    background-color:blueviolet;
+    transition: 0.2s;
+}
+
+.card:hover{
+    transform: scale(1.4);
+}
+
+#art{
+    font-family: 'East Sea Dokdo', cursive;
+}
+
+
+#projects{
+    font-family: 'Raleway', sans-serif;
+    height: 200px;
+    width: 150px;
+}
+
+#updates{
+    font-family: 'Roboto Mono', monospace;
 }
