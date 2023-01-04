@@ -23,8 +23,10 @@ When clicked on, I want the images displayed in a horizontal scroll.
 I'm going to limit this to 3 projects I have worked on and are at least somewhat functional.
 So I'll be including the ABC Flashcard project/ The Code Cademy Dasmoto's project/ and a yet to be determined 3rd.  (I'm between two I guess)
 When clicked on, I want 3 cards displaying the project names to appear
+#### Update on this one
+I will do a math quiz project, the app will allow you to choose a math function (addition, subtraction, ect) and randomly generate 5 problems and provide results after all questions have been answered. Will require HTML, CSS, and JS
 
 ### Updates
 
 This should be the most simple, when clicked on I want it to show the 3 most recent updates.
-I can do create these updates as I work on the project.
+I can create these updates as I work on the project.
