@@ -27,3 +27,9 @@ Upon closing the pop up, there should be correct answers shown in a high contras
 1/4/2023 - Created the html structure. Need to tackle JS next.
 Have to keep in mind generating the problems and hiding selection.
 Debating if I should do CSS before or after JS, regardless one idea I have is the have the problems drop down and rest on their lines.  Will probably need to go with a grid design instead of a flexbox.
+
+1/5/2023 - I'm kinda embarrased how long it took me to figure out how to generate div's with a distinct id in a for loop, but I figured it out.  Now the problems will generate 5 new problems everytime it is clicked.  I can easily take advantage of this by making a new set if they get too many wrong, but first I'll need to get to the grading step.
+
+I think the best approach would be to create a button, disable the visibility and have the visibility restored when the quiz button is clicked, and then disable the quiz button so it's not spammed for infinite problems.
+
+Although, I also need to add some CSS to format these problems better, it annoys me how they look now.  Also need to still figure out how to add an animation for each question as it appears! (fuuuuuuuun)
