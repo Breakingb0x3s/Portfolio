@@ -33,3 +33,5 @@ Debating if I should do CSS before or after JS, regardless one idea I have is th
 I think the best approach would be to create a button, disable the visibility and have the visibility restored when the quiz button is clicked, and then disable the quiz button so it's not spammed for infinite problems.
 
 Although, I also need to add some CSS to format these problems better, it annoys me how they look now.  Also need to still figure out how to add an animation for each question as it appears! (fuuuuuuuun)
+
+1/6/2023 - Still sinking in that it's 2023, anyway, I updated the Math Quiz project, getting ready to perform a commit to the main branch.  The Math Quiz project just needs the simple Division operation coded in for the main part, after that it's creating (hopefully) just two other functions, one for the timer and one for grading the quiz.
