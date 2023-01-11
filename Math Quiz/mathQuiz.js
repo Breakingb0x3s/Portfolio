@@ -5,7 +5,7 @@ const solve = document.getElementById('solve');
 
 //Generate Quiz Section
 let generateQuiz = () =>{
-    const maxNum = document.getElementById('maxNum').value; //Need to fix this a bit, as it stands now it excludes the maxNumber, not include it but I also want 0 included as well.
+    const maxNum = document.getElementById('maxNum').value; //Need to fix this a bit, as it stands now it excludes the maxNumber, not include it but I also want 0 included as well so the ceil function isn't an answer...arrgh!!
     const operation = document.getElementById('operation').value;
     //Subtraction wasn't working with the variables q (for question) and an (for answer) so I changed their scope to be within the function instead of the switch statement
     let problem;
@@ -20,14 +20,14 @@ let generateQuiz = () =>{
         switch(operation){
             case 'addition':
                 for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * maxNum);
+                    a = Math.floor(Math.random() * maxNum); //Using maxNum + 1 doesn't work, and neither does numMax++ need to really fix it somehow
                     b = Math.floor(Math.random() * maxNum);
                     q = a + ' + ' + b + ' = ';
                     an = a + b;
                     problem = document.createElement('div');
                     problem.setAttribute("id", "problem"); //Okay, the code below works, so I decided not to number the problem divs since it'll make CSS a lot more simple
                     //Below will create a numbered div for each of the 5 problems uising a for loop.  I set it up this way so in the future if I want I can easily expand beyond 5 problems.
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="number" id="sol' + i + ' name="sol' + i + '"><div id="answer' + i +'">' + an + '</div>'
+                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>'
                     quiz.appendChild(problem);
                 }
                 break;
@@ -46,7 +46,7 @@ let generateQuiz = () =>{
 
                     problem = document.createElement('div');
                     problem.setAttribute("id", "problem");
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="number" id="sol' + i + ' name="sol' + i + '"><div id="answer' + i +'">' + an + '</div>';
+                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
                     quiz.appendChild(problem);
                 }
                 break;
@@ -58,7 +58,7 @@ let generateQuiz = () =>{
                     an = a * b;
                     problem = document.createElement('div');
                     problem.setAttribute("id", "problem");
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="number" id="sol' + i + ' name="sol' + i + '"><div id="answer' + i +'">' + an + '</div>';
+                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
                     quiz.appendChild(problem);
                 }
                 break;
@@ -74,7 +74,7 @@ let generateQuiz = () =>{
                     an = a / b;
                     problem = document.createElement('div');
                     problem.setAttribute("id", "problem");
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="number" id="sol' + i + ' name="sol' + i + '"><div id="answer' + i +'">' + an + '</div>';
+                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
                     quiz.appendChild(problem);
                 }
                 break;
@@ -138,3 +138,57 @@ start.addEventListener('click', startStopWatch);
 solve.addEventListener('click', function(){
     timer = false;
 });
+
+//Solve function starts below -Should check to make sure all fields are filled in or have empty fields default to an incorrect value
+let gradeQuiz = () =>{
+    let mark = 0;
+    let letterGrade;
+    let message;
+    let stats;
+
+    for(i = 0; i < 5; i++){
+        let guessValue = 'sol' + i;
+        let answerReveal = 'answer' + i;
+
+        let guess = document.getElementById(guessValue).value;
+        let correct = document.getElementById(answerReveal).innerHTML;
+
+        if(guess === correct){
+            document.getElementById('answer' + i).innerHTML = "✅";
+            document.getElementById('answer' + i).hidden = false;
+            mark = mark + 1;
+        }else{
+            document.getElementById('answer' + i).hidden = false;
+        }
+    }
+    //Admittedly the grading system is very simple but I don't need anything robust if I'm only doing 5 problems at a time
+    if((mark/5)*100 === 100){
+        letterGrade = 'A+'
+    }else if((mark/5)* 100 === 80){
+        letterGrade = 'B'
+    }else if((mark/5)*100 === 60){
+        letterGrade = 'D'
+    }else if((mark/5) < 60){
+        letterGrade = 'F'
+    }
+
+    switch(letterGrade){
+        case 'A+':
+            message = 'Great job! Mabey try some harder settings?'
+            break;
+        case 'B':
+            message = 'Good job, you really know your stuff!'
+            break;
+        case 'D':
+            message = "Don't worry about taking your time, slow down and do it right!"
+            break;
+        default:
+            message = "Failing is just our first attempt in learning, keep tyring!"
+    }
+
+    stats = document.getElementById('operation').value + ':Max Num of ' + document.getElementById('maxNum').value + ' Grade: ' + letterGrade + ' Time:' + stopWatch.innerHTML;
+    alert(((mark/5)*100) + '% ' + letterGrade + ' ' + message + '   ' + stats);
+    //Now that the sheet has grading parameters I need to add an alert message with the score, have the score recorded at the bottom of the Highscore list and then reset the quiz area
+}
+
+solve.addEventListener('click', gradeQuiz);
