@@ -1,7 +1,7 @@
 let quiz = document.getElementById('quiz');
 const start = document.getElementById('startQ');
 const solve = document.getElementById('solve');
-
+let counter = 1;
 
 //Generate Quiz Section
 let generateQuiz = () =>{
@@ -12,7 +12,10 @@ let generateQuiz = () =>{
     let q;
     let an;
     let a;
-    let b; 
+    let b;
+    
+    quiz.innerHTML = "";
+    solve.disabled = false;
 
     if(maxNum <= 0){
         alert("Please make sure you've entered a max Value greater than 0 and have chosen an operation.")
@@ -93,7 +96,7 @@ let sec = 0;
 let mil = 0;
 
 let startStopWatch = () =>{
-
+    
     if (timer) {
         mil+= 10;
 
@@ -125,7 +128,6 @@ let startStopWatch = () =>{
             stopWatch.innerHTML = minute + ' : ' + second + ' : ' + mS;
             setTimeout(startStopWatch, 10);
     }
-    start.disabled = true;
 }
 //Finished adding the timer, works like it should will have to remember to remove the pause function from the solve button.  Solve button is the next step to code.
 
@@ -135,8 +137,14 @@ start.addEventListener('click', function(){
 });
 start.addEventListener('click', generateQuiz);
 start.addEventListener('click', startStopWatch);
+start.addEventListener('click', function(){
+    start.disabled = true;
+})
 solve.addEventListener('click', function(){
     timer = false;
+});
+solve.addEventListener('click', function(){
+    start.disabled = false;
 });
 
 //Solve function starts below -Should check to make sure all fields are filled in or have empty fields default to an incorrect value
@@ -186,9 +194,20 @@ let gradeQuiz = () =>{
             message = "Failing is just our first attempt in learning, keep tyring!"
     }
 
-    stats = document.getElementById('operation').value + ':Max Num of ' + document.getElementById('maxNum').value + ' Grade: ' + letterGrade + ' Time:' + stopWatch.innerHTML;
-    alert(((mark/5)*100) + '% ' + letterGrade + ' ' + message + '   ' + stats);
-    //Now that the sheet has grading parameters I need to add an alert message with the score, have the score recorded at the bottom of the Highscore list and then reset the quiz area
+    stats = document.getElementById('operation').value + ' :Max Num of ' + document.getElementById('maxNum').value + ' Grade: ' + letterGrade + ' Time: ' + stopWatch.innerHTML;
+    alert(((mark/5)*100) + '% ' + letterGrade + ' ' + message + '   \n' + stats); //I do not like the formatting of this alert, but the only way around that seems to be creating a custom alert box which I am not doing at this time.
+    //Now that the sheet has grading parameters I need to have the score recorded at the bottom of the Highscore list and then reset the quiz area
+    let newHighScore = document.createElement("div");
+    newHighScore.setAttribute('id', "score" + counter);
+    newHighScore.innerHTML = stats;
+    counter += 1;
+    document.getElementById('highScore').appendChild(newHighScore);
+    min = 0;
+    sec = 0;
+    mil = 0;
+
+    solve.disabled = true;
 }
+
 
 solve.addEventListener('click', gradeQuiz);
