@@ -35,3 +35,8 @@ I think the best approach would be to create a button, disable the visibility an
 Although, I also need to add some CSS to format these problems better, it annoys me how they look now.  Also need to still figure out how to add an animation for each question as it appears! (fuuuuuuuun)
 
 1/6/2023 - Still sinking in that it's 2023, anyway, I updated the Math Quiz project, getting ready to perform a commit to the main branch.  The Math Quiz project just needs the simple Division operation coded in for the main part, after that it's creating (hopefully) just two other functions, one for the timer and one for grading the quiz.
+
+1/14/2023 - Just finished all the functionality of the project, it generates problems correctly and checks the input answers.  It will also post the stats of each attempt under the HighScores section.  Just need to stylize it, which includes:
+1. Picking a theme
+2. Animate the problems as they appear
+3. Font/Style for the highscores (might try to see if there's a Street Fighter theme I can do here)
