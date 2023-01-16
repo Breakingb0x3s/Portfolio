@@ -15,7 +15,7 @@
 }
 
 #display{
-    flex-shrink: 1;
+    flex-shrink: 2;
 }
 
 #gallery{
@@ -37,6 +37,14 @@
 
 #art{
     font-family: 'East Sea Dokdo', cursive;
+    transition: 1s;
+}
+
+#art:hover{
+    background-image: url(/img/zune.jpg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 
@@ -44,8 +52,23 @@
     font-family: 'Raleway', sans-serif;
     height: 200px;
     width: 150px;
+    transition: 1s;
+}
+
+#projects:hover{
+    background-image: url(/img/projectsCard);
+    background-position: center;
+    background-size: cover;
 }
 
 #updates{
     font-family: 'Roboto Mono', monospace;
+    transition: 1s;
+}
+
+#updates:hover{
+    background-image: url(/img/updateCard.jpg);
+    background-position: center;
+    background-size: cover;
+    color: white;
 }
