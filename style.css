@@ -10,13 +10,17 @@
     align-items: center;
 }
 
+/*AboutMe and the display are the main part of the page, need to adjust them so they stay side by side, May have them switch positions for mobile view*/
+
 #aboutMe{
     flex-grow: 2;
 }
 
 #display{
-    flex-shrink: 2;
+    flex-shrink: 1;
 }
+
+/*Gallery options*/
 
 #gallery{
     display: flex;
@@ -41,7 +45,7 @@
 }
 
 #art:hover{
-    background-image: url(/img/zune.jpg);
+    background-image: url(/img/foxtattoo.jpg);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
