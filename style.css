@@ -10,9 +10,9 @@
     align-items: center;
 }
 
-/*AboutMe and the display are the main part of the page, need to adjust them so they stay side by side, May have them switch positions for mobile view*/
+/*Info and the display are the main part of the page, need to adjust them so they stay side by side, May have them switch positions for mobile view*/
 
-#aboutMe{
+#info{
     flex-grow: 2;
 }
 
