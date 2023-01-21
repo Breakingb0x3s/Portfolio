@@ -13,7 +13,7 @@ let displayData;
 let changeDisplays = (event) =>{
 
 //event.srcElement kinda works like 'this' in function for vanilla JS
-console.log(mainDisplay.children[0].id);
+
     switch(event.srcElement.id){
         case 'projects':
             switch(mainDisplay.children[0].id){
@@ -44,6 +44,12 @@ console.log(mainDisplay.children[0].id);
             mainDisplay.innerHTML = '<div class="mainCard" id="projects">' + projects.innerHTML + '</div>';
             gallery.appendChild(displayData);
             projects.remove();
+            break;
+        case 'art':
+            break;
+        case 'updates':
+            break;
+        case 'aboutMe':
             break;
         default:
             alert('It might be working ' + event.srcElement.id);
