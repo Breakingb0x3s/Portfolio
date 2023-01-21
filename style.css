@@ -17,6 +17,8 @@
 }
 
 #display{
+    min-width: 200px;
+    min-height: 200px;
     flex-shrink: 1;
 }
 
@@ -54,8 +56,6 @@
 
 #projects{
     font-family: 'Raleway', sans-serif;
-    height: 180px;
-    width: 150px;
     transition: 1s;
 }
 
@@ -75,4 +75,19 @@
     background-position: center;
     background-size: cover;
     color: white;
+}
+
+
+
+/*Below here are the post loading screen styles*/
+
+.dasmotos{
+    display: none;
+    max-width: 40%;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+}
+
+#dasmotos:hover .dasmotos{
+    display: block;
 }

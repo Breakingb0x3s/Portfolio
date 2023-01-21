@@ -9,6 +9,7 @@ const cards = document.getElementsByClassName('card');
 //Main components of the portfolio are listed above
 let cardData;
 let displayData;
+
 //Testing, I will attempt to have the project contents switch to the main and side displays when clicked, but then need the aboutMe info to be stored in the clicked on card.  Need to take into account if the next card clicked, the aboutMe info doesn't accidently erase previous card data.
 let changeDisplays = (event) =>{
 
@@ -44,6 +45,7 @@ let changeDisplays = (event) =>{
             mainDisplay.innerHTML = '<div class="mainCard" id="projects">' + projects.innerHTML + '</div>';
             gallery.appendChild(displayData);
             projects.remove();
+            sideDisplay.innerHTML = '<div id="pdescriptions"><div class="dasmotos"><p>This was one of my first projects, just a reminder of how far I have come since</p></div><div class="mathQuiz" hidden><p>Made a simple Math Quiz application to test kids and quickly give them a grade.  I am hoping to make it a bit more complex in the future.</p></div><div class="abc" hidden><p>This was completely made out of necessity for my kids, first time really learning how to manipulate the DOM.</p></div></div>';
             break;
         case 'art':
             break;
