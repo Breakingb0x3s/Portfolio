@@ -11,15 +11,42 @@
     <body>
         <center><h1>Breakingb0x3s a Dev</h1></center>
         <div id="main">
-            <div id="aboutMe">This section is about me, it will have 3 interesting facts to expand upon. Such as <ol><li>Boxing</li><li>Gaming</li><li>& Learning</li></ol></div>
+            <div id="info">
+                <div id="aboutMe" class="mainCard">This section is about me.
+                    <p id="bio">Hello, my name is Riley Robinson.  I am a developer who is continuing my journey into programming.  One aspect that has lead me to this journey is boxing.  
+                        Growing up I always admired fighters and their ability to take in information and adjust to their opponent on the fly.
+                        You cannot be successful if you can't learn. And one thing that my attempts at boxing have taught me, is that learning takes time.  Even the amazing on the fly adjustments, are learned weeks to months prior to the actual fight.
+                        Another aspect that plays into my coding is my love of games.  It's not just sports, but videogames as well that inspire me.  It's fun to breakdown the inner workings of a game,
+                        understanding the rules, making adjustments for a more interesting experience, all of this I can also get from coding.</p>
+                </div>
+            </div>
             <div id="display"><img src="/img/115906251.png"></div>
         </div>
         <!--The gallery below should sit beneath the aboutMe and display divs.  Each of the displays for the gallery divs should be spaced evenly from each other with the middle "projects" being slightly bigger than the other two-->
         <div id="gallery">
-            <div class="card" id="art">Artwork</div>
-            <div class="card" id="projects">Developer Projects</div>
-            <div class="card" id="updates">Updates</div>
+            <div class="card" id="art">Artwork
+                <div id ="artGallery" hidden></div> <!--Art gallery will be empty on load, these files will be maintained in engine.js-->
+            </div>
+            <div class="card" id="projects">Developer Projects
+                <div id="links" hidden>
+                    <a href="Dasmotos/dasmoto.html">First Web Page</a>
+                    <a href="Math Quiz/mathQuiz.html">Math Quiz</a>
+                    <a href="Alphabet Flashcards/alphabet.html">Alphabet Flashcards</a>
+                    <!--Remember to put links back to portfolio home page-->
+                </div>
+            </div>
+            <div class="card" id="updates">Updates
+                <div id ="dates" hidden>
+                    <div class="update" id="current">1/16/22 - Okay got frustrated trying to get the cards to have their own dropdowns with just CSS, but it may be do to how I'm implementing the hover effect.
+                        If need be, I'll fall back to JS for the menus to appear as needed.  I've decided to have the update card show the dates of the 3 most recent updates to the portfolio and when 
+                        clicked on it will update the aboutMe section with a list of update dates and when clicked on the full update (like this one) will be displayed on the display.
+                    </div>
+                    <div class="update" id="past"></div>
+                    <div class ="update" id="past2"></div>
+                </div>
+            </div>
         </div>
+        <script src="/engine.js"></script>
     </body>
     <footer>
         <p>This is just a placeholder for now, will add contact and resume links here. Need to keep in mind that there needs to be a separate contact page.</p>
