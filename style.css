@@ -77,17 +77,25 @@
     color: white;
 }
 
+#aboutMe{
+    transition: 1s;
+}
 
+#aboutMe:hover{
+    background-image: url(/img/115906251.png);
+    background-position: center;
+    background-size: cover;
+}
 
 /*Below here are the post loading screen styles*/
 
-.dasmotos{
+.dasmotos, .mathQuiz, .abc{
     display: none;
     max-width: 40%;
     font-size: 14px;
     font-family: 'Raleway', sans-serif;
 }
-
+/*Still trying to get this hover effect to work*/
 #dasmotos:hover .dasmotos{
     display: block;
 }
