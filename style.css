@@ -28,7 +28,7 @@
     width: 100px;
     height: 150px;
     background-color:blueviolet;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .card:hover{
@@ -42,7 +42,7 @@
 
 #projects{
     font-family: 'Raleway', sans-serif;
-    height: 200px;
+    height: 180px;
     width: 150px;
 }
 
