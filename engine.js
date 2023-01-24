@@ -5,12 +5,35 @@ const projects = document.getElementById('projects');
 const updates = document.getElementById('updates');
 const gallery = document.getElementById('gallery');
 const cards = document.getElementsByClassName('card');
-const pictures = ['"/img/zune.jpg"', '"/img/gulllina.jpg"','"/img/foxtattoo.jpg"','"/img/panda.jpg"','"/img/timekiller.jpg"','"/img/joker.jpg"'];
+const pictures = ['<img src="/img/zune.jpg">', '<img src="/img/gulllina.jpg">','<img src="/img/foxtattoo.jpg">','<img src="/img/panda.jpg">','<img src="/img/timekiller.jpg">','<img src="/img/joker.jpg">'];
 //Main components of the portfolio are listed above
 let cardData;
 let displayData;
 
+
 //Testing, I will attempt to have the project contents switch to the main and side displays when clicked, but then need the aboutMe info to be stored in the clicked on card.  Need to take into account if the next card clicked, the aboutMe info doesn't accidently erase previous card data.
+let nextArt = () =>{
+
+    let currentImage = pictures.indexOf(document.getElementById('viewImage').innerHTML);
+    if(currentImage === 5){
+        document.getElementById('viewImage').innerHTML = pictures[0];
+    }else{
+        document.getElementById('viewImage').innerHTML = pictures[currentImage+1];
+    }
+    
+}
+
+let lastArt = () =>{
+
+    let currentImage = pictures.indexOf(document.getElementById('viewImage').innerHTML);
+    if(currentImage === 0){
+        document.getElementById('viewImage').innerHTML = pictures[5];
+    }else{
+        document.getElementById('viewImage').innerHTML = pictures[currentImage-1];
+    }
+    
+}
+
 let changeDisplays = (event) =>{
 
 //event.srcElement kinda works like 'this' in function for vanilla JS
@@ -32,6 +55,7 @@ let changeDisplays = (event) =>{
                     break;
                 case 'mainArt':
                     document.getElementById('artGallery').hidden = true;
+                    document.getElementById('artGallery').style.display = 'none';
                     displayData = document.getElementById('mainArt').cloneNode(true);
                     displayData.className = "card";
                     displayData.id = "art";
@@ -53,6 +77,44 @@ let changeDisplays = (event) =>{
             document.getElementById(displayData.id).addEventListener('click', changeDisplays);
             break;
         case 'art':
+            switch(mainDisplay.children[0].id){
+                case 'mainAboutMe':
+                    document.getElementById('bio').hidden = true;
+                    displayData = document.getElementById('mainAboutMe').cloneNode(true);
+                    displayData.className = "card";
+                    displayData.id = "aboutMe";
+                    break;
+                case 'mainProjects':
+                    document.getElementById('links').hidden = true;
+                    displayData = document.getElementById('mainProjects').cloneNode(true);
+                    displayData.className = "card";
+                    displayData.id = "projects";
+                    break;
+                case 'mainArt':
+                    document.getElementById('artGallery').hidden = true;
+                    document.getElementById('artGallery').style.display = none;
+                    displayData = document.getElementById('mainArt').cloneNode(true);
+                    displayData.className = "card";
+                    displayData.id = "art";
+                    break;
+                case 'mainUpdates':
+                    document.getElementById('dates').hidden = true;
+                    displayData = document.getElementById('mainUpdates').cloneNode(true);
+                    displayData.className = "card"
+                    displayData.id = "updates"
+                    break;
+                default:
+                    alert('Dunno how but you broke it')
+            }
+            document.getElementById('artGallery').hidden = false;
+            mainDisplay.innerHTML = '<div class="mainCard" id="mainArt">' + art.innerHTML + '</div>';
+            gallery.appendChild(displayData);
+            document.getElementById('art').remove();
+            sideDisplay.innerHTML = 'TBD'
+            document.getElementById(displayData.id).addEventListener('click', changeDisplays);
+            document.getElementById('artRight').addEventListener('click', nextArt);
+            document.getElementById('artLeft').addEventListener('click', lastArt);
+            document.getElementById('artGallery').style.display = 'grid';
             break;
         case 'updates':
             break;
@@ -67,6 +129,7 @@ let changeDisplays = (event) =>{
                     break;
                 case 'mainArt':
                     document.getElementById('artGallery').hidden = true;
+                    document.getElementById('artGallery').style.display = 'none';
                     displayData = document.getElementById('mainArt').cloneNode(true);
                     displayData.className = "card";
                     displayData.id = "art";
@@ -94,3 +157,4 @@ let changeDisplays = (event) =>{
 }
 
 projects.addEventListener('click', changeDisplays);
+art.addEventListener('click', changeDisplays);
