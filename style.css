@@ -134,5 +134,6 @@
 #viewImage img{
     height: 100%;
     width: 100%;
+    max-height: 500px;
     object-fit: contain;
 }

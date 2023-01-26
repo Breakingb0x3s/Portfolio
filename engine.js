@@ -6,6 +6,7 @@ const updates = document.getElementById('updates');
 const gallery = document.getElementById('gallery');
 const cards = document.getElementsByClassName('card');
 const pictures = ['<img src="/img/zune.jpg">', '<img src="/img/gulllina.jpg">','<img src="/img/foxtattoo.jpg">','<img src="/img/panda.jpg">','<img src="/img/timekiller.jpg">','<img src="/img/joker.jpg">'];
+const picDescriptions = [];
 //Main components of the portfolio are listed above
 let cardData;
 let displayData;
@@ -117,6 +118,41 @@ let changeDisplays = (event) =>{
             document.getElementById('artGallery').style.display = 'grid';
             break;
         case 'updates':
+            switch(mainDisplay.children[0].id){
+                case 'mainAboutMe':
+                    document.getElementById('bio').hidden = true;
+                    displayData = document.getElementById('mainAboutMe').cloneNode(true);
+                    displayData.className = "card";
+                    displayData.id = "aboutMe";
+                    break;
+                case 'mainProjects':
+                    document.getElementById('links').hidden = true;
+                    displayData = document.getElementById('mainProjects').cloneNode(true);
+                    displayData.className = "card";
+                    displayData.id = "projects";
+                    break;
+                case 'mainArt':
+                    document.getElementById('artGallery').hidden = true;
+                    document.getElementById('artGallery').style.display = 'none';
+                    displayData = document.getElementById('mainArt').cloneNode(true);
+                    displayData.className = "card";
+                    displayData.id = "art";
+                    break;
+                case 'mainUpdates':
+                    document.getElementById('dates').hidden = true;
+                    displayData = document.getElementById('mainUpdates').cloneNode(true);
+                    displayData.className = "card"
+                    displayData.id = "updates"
+                    break;
+                default:
+                    alert('Dunno how but you broke it')
+            }
+            document.getElementById('dates').hidden = false;
+            mainDisplay.innerHTML = '<div class="mainCard" id="mainUpdates">' + updates.innerHTML + '</div>';
+            gallery.appendChild(displayData);
+            document.getElementById('updates').remove();
+            sideDisplay.innerHTML = 'TBD'
+            document.getElementById(displayData.id).addEventListener('click', changeDisplays);
             break;
         case 'aboutMe':
             switch(mainDisplay.children[0].id){
@@ -158,3 +194,4 @@ let changeDisplays = (event) =>{
 
 projects.addEventListener('click', changeDisplays);
 art.addEventListener('click', changeDisplays);
+updates.addEventListener('click', changeDisplays);
