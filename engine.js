@@ -6,7 +6,7 @@ const updates = document.getElementById('updates');
 const gallery = document.getElementById('gallery');
 const cards = document.getElementsByClassName('card');
 const pictures = ['<img src="/img/zune.jpg">', '<img src="/img/gulllina.jpg">','<img src="/img/foxtattoo.jpg">','<img src="/img/panda.jpg">','<img src="/img/timekiller.jpg">','<img src="/img/joker.jpg">'];
-const picDescriptions = [];
+const picDescriptions = ['<h2>Zune</h2><h4>2009</h4><br><p>This is an OC (original character) I designed with my younger brother, she was heavily inspired by Spike Segal and Shinobu Jacobs.  <br>The naming convention was inspired by Akira Toriyama, but instead of naming our characters after food we used music players.  <br>His OC was named San for "Sandisk"</p>','<h2>Gull & Lina</h2><h4>2010</h4><br><p>This is of two original characters, mine Gull (who is riding in front with the eyepatch) and Lina who was created by my old friend on DeviantArt who went by Tofubeast.  <br>This was a recreaction of the cover of Dragon Ball vol. 2</p>','<h2>Flower Fox</h2><h4>2009</h4><br><p>This was a tattoo that was commissioned by my friend who goes by DJ Taifu.  I had a lot of fun working with the curves and trying to make them fluid.  This was one of the first pieces I made for a tattoo.</p>','<h2>Panda eyes</h2><h4>~2007</h4><br><p>This was a piece I did around Halloween, I originally posted in 2007 but it was sitting in my sketch book for a while.  I wanted to compare my cartoonish style vs a more realistic take on the same subject.</p>','<h2>Time is a Killer</h2><h4>2008</h4><br><p>This brings back memories.  I made this piece shortly after beating the game The World Ends With You for the Nintendo DS.  I was smitten with the character designs and overall positive punk feel of the game and tried to capture that feeling with this piece.</p>','<h2>Drop Dead Georgous</h2><h4>2008</h4><br><p>I was pretty proud of this piece but it is obviously unfinished.  I would like to find time to do an updated version of this, I like the concept but the lack of a real background takes away from any real impact this piece could have.</p>'];
 //Main components of the portfolio are listed above
 let cardData;
 let displayData;
@@ -18,8 +18,10 @@ let nextArt = () =>{
     let currentImage = pictures.indexOf(document.getElementById('viewImage').innerHTML);
     if(currentImage === 5){
         document.getElementById('viewImage').innerHTML = pictures[0];
+        sideDisplay.innerHTML = picDescriptions[0];
     }else{
         document.getElementById('viewImage').innerHTML = pictures[currentImage+1];
+        sideDisplay.innerHTML = picDescriptions[currentImage+1];
     }
     
 }
@@ -29,8 +31,10 @@ let lastArt = () =>{
     let currentImage = pictures.indexOf(document.getElementById('viewImage').innerHTML);
     if(currentImage === 0){
         document.getElementById('viewImage').innerHTML = pictures[5];
+        sideDisplay.innerHTML = picDescriptions[5];
     }else{
         document.getElementById('viewImage').innerHTML = pictures[currentImage-1];
+        sideDisplay.innerHTML = picDescriptions[currentImage-1];
     }
     
 }
@@ -111,7 +115,7 @@ let changeDisplays = (event) =>{
             mainDisplay.innerHTML = '<div class="mainCard" id="mainArt">' + art.innerHTML + '</div>';
             gallery.appendChild(displayData);
             document.getElementById('art').remove();
-            sideDisplay.innerHTML = 'TBD'
+            sideDisplay.innerHTML = picDescriptions[0];
             document.getElementById(displayData.id).addEventListener('click', changeDisplays);
             document.getElementById('artRight').addEventListener('click', nextArt);
             document.getElementById('artLeft').addEventListener('click', lastArt);

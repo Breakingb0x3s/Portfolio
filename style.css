@@ -22,6 +22,25 @@
     max-width: 35%;
 }
 
+#display h2, #display h4{
+    font-family: 'East Sea Dokdo', cursive;
+    text-align: center;
+}
+
+#display h2{
+    font-size: 36px;
+}
+
+#display h4{
+    color: rgba(53, 53, 53, 0.719);
+}
+
+/*#display p{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 45px;
+    padding-right: 45px;
+}Currently disabled. Works for art gallery but distorts the Developer project text, will have to figure another way to inject this when the art gallery is loaded*/
 
 /*Gallery options*/
 
