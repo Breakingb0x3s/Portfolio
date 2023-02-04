@@ -5,7 +5,8 @@ let counter = 1;
 
 //Generate Quiz Section
 let generateQuiz = () =>{
-    const maxNum = document.getElementById('maxNum').value; //Need to fix this a bit, as it stands now it excludes the maxNumber, not include it but I also want 0 included as well so the ceil function isn't an answer...arrgh!!
+    const maxNum = document.getElementById('maxNum').value * 1; //Need to fix this a bit, as it stands now it excludes the maxNumber, not include it but I also want 0 included as well so the ceil function isn't an answer...arrgh!!
+    //Fixed the issue, maxNum was being treated as a string, so now when the value is captured it's multiplied by 1 to convert it to a number.
     const operation = document.getElementById('operation').value;
     //Subtraction wasn't working with the variables q (for question) and an (for answer) so I changed their scope to be within the function instead of the switch statement
     let problem;
@@ -23,8 +24,8 @@ let generateQuiz = () =>{
         switch(operation){
             case 'addition':
                 for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * maxNum); //Using maxNum + 1 doesn't work, and neither does numMax++ need to really fix it somehow
-                    b = Math.floor(Math.random() * maxNum);
+                    a = Math.floor(Math.random() * (maxNum+1)); //Using maxNum + 1 doesn't work, and neither does numMax++ need to really fix it somehow
+                    b = Math.floor(Math.random() * (maxNum+1));
                     q = a + ' + ' + b + ' = ';
                     an = a + b;
                     problem = document.createElement('div');
@@ -36,8 +37,8 @@ let generateQuiz = () =>{
                 break;
             case 'subtraction':
                 for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * maxNum);
-                    b = Math.floor(Math.random() * maxNum);
+                    a = Math.floor(Math.random() * (maxNum+1));
+                    b = Math.floor(Math.random() * (maxNum+1));
 
                     if(a > b){
                         q = a + ' - ' + b + ' = ';
@@ -55,8 +56,8 @@ let generateQuiz = () =>{
                 break;
             case 'multiplication':
                 for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * maxNum);
-                    b = Math.floor(Math.random() * maxNum);
+                    a = Math.floor(Math.random() * (maxNum+1));
+                    b = Math.floor(Math.random() * (maxNum+1));
                     q = a + ' x ' + b + ' = '; //Might change x to *, unsure
                     an = a * b;
                     problem = document.createElement('div');
@@ -67,7 +68,7 @@ let generateQuiz = () =>{
                 break;
             case 'division':
                 for(let i = 0; i < 5; i++){
-                    b = Math.floor(Math.random() * maxNum);
+                    b = Math.floor(Math.random() * (maxNum+1));
                     if(b < 11){
                         a = Math.floor(Math.random() * 13) * b;
                     }else{
@@ -103,10 +104,10 @@ let startStopWatch = () =>{
             if (mil == 1000){
                 sec++;
                 mil = 0;
-            }
-            if (sec == 60){
-                min++;
-                second = 0;
+                if (sec == 60){ //I forgot to nest this before and that caused the timer to stop at 59seconds, now I'm not sure if this is correct but I belive that having those two if statements kinda crashed the timer.
+                    min++;
+                    sec = 0;
+                }
             }
 
             let minute = min;
