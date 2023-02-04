@@ -3,11 +3,13 @@
 }
 
 #main{
+    margin: 2em;
     display: flex;
     flex-wrap: wrap;
-    max-width: 100%;
+    max-width: 95%;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.75);
 }
 
 /*Info and the display are the main part of the page, need to adjust them so they stay side by side, May have them switch positions for mobile view*/
@@ -15,11 +17,13 @@
 #info{
     flex-grow: 2;
     max-width: 65%;
+    padding: 2em 1em 2em 1em;
 }
 
 #display{
     flex-shrink: 1;
     max-width: 35%;
+    min-height: 460px;
 }
 
 #display h2, #display h4{
@@ -35,12 +39,15 @@
     color: rgba(53, 53, 53, 0.719);
 }
 
-/*#display p{
-    margin-left: 20px;
-    margin-right: 20px;
-    padding-left: 45px;
-    padding-right: 45px;
-}Currently disabled. Works for art gallery but distorts the Developer project text, will have to figure another way to inject this when the art gallery is loaded*/
+#display img{
+    max-width: 100%;
+    object-fit: cover;
+}
+
+#display p{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
 
 /*Gallery options*/
 
@@ -51,18 +58,23 @@
 }
 
 .card{
+    border-radius: 5px;
     width: 100px;
     height: 150px;
     background-color:blueviolet;
     transition: 0.3s;
+    box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.5);
 }
 
 .card:hover{
-    transform: scale(1.4);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 1);
+    transform: scale(1.2);
 }
 
 #art{
     font-family: 'East Sea Dokdo', cursive;
+    opacity: 0;
+    animation: drop 0.8s linear forwards;
     transition: 1s;
 }
 
@@ -76,6 +88,8 @@
 
 #projects{
     font-family: 'Raleway', sans-serif;
+    opacity: 0;
+    animation: drop 0.8s linear forwards 0.2s;
     transition: 1s;
 }
 
@@ -87,6 +101,8 @@
 
 #updates{
     font-family: 'Roboto Mono', monospace;
+    opacity: 0;
+    animation: drop 0.8s linear forwards 0.4s;
     transition: 1s;
 }
 
@@ -97,8 +113,19 @@
     color: white;
 }
 
+@keyframes drop {
+    0% {transform: translateY(-900px) scaleY(0.9); opacity: 0;}
+    5% {opacity: 0.7;}
+    50%{transform: translateY(0px) scaleY(1); opacity: 1;}
+    65%{transform: translateY(-17px) scaleY(0.9); opacity: 1;}
+    75%{transform: translateY(-22px) scaleY(0.9); opacity: 1;}
+    100%{transform: translateY(0px) scaleY(1); opacity: 1;}
+}
+
 #aboutMe{
     transition: 1s;
+    opacity: 0;
+    animation: drop 0.8s linear forwards;
 }
 
 #aboutMe:hover{
@@ -128,7 +155,7 @@
 
 #artLeft, #artRight{
     background-color: lime;
-    opacity: 0.4;
+    opacity: 0.2;
     z-index: 1;
 }
 
@@ -153,6 +180,6 @@
 #viewImage img{
     height: 100%;
     width: 100%;
-    max-height: 500px;
+    max-height: 480px;
     object-fit: contain;
 }
