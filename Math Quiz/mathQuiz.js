@@ -72,7 +72,7 @@ let generateQuiz = () =>{
                     if(b < 11){
                         a = Math.floor(Math.random() * 13) * b;
                     }else{
-                        a = Math.floor(Math.random() * 6) * b;
+                        a = Math.floor(Math.random() * 6) * b; //Division settings are set for beginner levels, also set to insure there are whole number answers, may change this in the future
                     }
                     q = a + ' ÷ ' + b + ' = '
                     an = a / b;
@@ -168,6 +168,8 @@ let gradeQuiz = () =>{
             mark = mark + 1;
         }else{
             document.getElementById('answer' + i).hidden = false;
+            document.getElementById('answer' + i).style.color = 'red';
+            document.getElementById('answer' + i).style.fontWeight = 'bolder'
         }
     }
     //Admittedly the grading system is very simple but I don't need anything robust if I'm only doing 5 problems at a time
@@ -212,3 +214,6 @@ let gradeQuiz = () =>{
 
 
 solve.addEventListener('click', gradeQuiz);
+//Future ideas.  Adding fractions is a possibility, the big issue is reducing the correct answers into a fraction format so the user understands what the final answer could be
+//Saving & Sorting the Highscores, as is now this might get done but was just a fun thing to see if I could, but should I return to this I might create 3 categories of Highscores since there's so many variables.  This will require rewriting the stats portion in the gradeQuiz function
+//Change the alertbox to be animated.  I was going to animate the questions appearing but that came off as a hinderance, but animating the alert box might be a fun little endevour.
