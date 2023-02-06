@@ -210,7 +210,7 @@ footer{
        margin: 1em;
        flex-wrap: nowrap;
        flex-direction: column-reverse;
-       max-height: fit-content;
+       height:fit-content;
     }
 
     #info, #display{
