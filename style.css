@@ -97,7 +97,7 @@ html{
 }
 
 #art:hover{
-    background-image: url(/img/foxtattoo.jpg);
+    background-image: url(https://breakingb0x3s.github.io/Portfolio/img/foxtattoo.jpg);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -112,7 +112,7 @@ html{
 }
 
 #projects:hover{
-    background-image: url(/img/projectsCard);
+    background-image: url(https://breakingb0x3s.github.io/Portfolio/img/projectsCard);
     background-position: center;
     background-size: cover;
 }
@@ -126,7 +126,7 @@ html{
 }
 
 #updates:hover{
-    background-image: url(/img/updateCard.jpg);
+    background-image: url(https://breakingb0x3s.github.io/Portfolio/img/updateCard.jpg);
     background-position: center;
     background-size: cover;
     color: white;
@@ -148,7 +148,7 @@ html{
 }
 
 #aboutMe:hover{
-    background-image: url(/img/115906251.png);
+    background-image: url(https://breakingb0x3s.github.io/Portfolio/img/115906251.png);
     background-position: center;
     background-size: cover;
 }
