@@ -16,6 +16,7 @@ html{
     justify-content: center;
     align-items: center;
     height: 500px;
+    overflow: scroll;
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.75);
 }
 
@@ -24,11 +25,13 @@ html{
 #info{
     flex-grow: 2;
     max-width: 65%;
+    font-size: 16px;
     padding: 2em 1em 2em 1em;
 }
 
 #display{
     flex-shrink: 1;
+    font-size: 14px;
     max-width: 35%;
     min-height: 460px;
 }
@@ -48,6 +51,8 @@ html{
 
 #display img{
     max-width: 100%;
+    max-height: 250px;
+    border-radius: 30%;
     object-fit: cover;
 }
 
@@ -62,15 +67,19 @@ html{
     display: flex;
     justify-content: space-around;
     padding: 0 11% 0 11%;
+    margin-bottom: 6em;
 }
 
 .card{
+    display: flex;
+    align-items: center;
     border-radius: 5px;
     width: 100px;
     height: 150px;
     background-color:blueviolet;
     transition: 0.3s;
     box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .card:hover{
@@ -80,6 +89,8 @@ html{
 
 #art{
     font-family: 'East Sea Dokdo', cursive;
+    font-size: 1.5em;
+    padding-left: 0.5em;
     opacity: 0;
     animation: drop 0.8s linear forwards;
     transition: 1s;
@@ -109,6 +120,7 @@ html{
 #updates{
     font-family: 'Roboto Mono', monospace;
     opacity: 0;
+    padding-left: 1em;
     animation: drop 0.8s linear forwards 0.4s;
     transition: 1s;
 }
@@ -143,8 +155,22 @@ html{
 
 /*Below are custom styles for the different sideDisplay states the first set is projects*/
 
+#dasmotos, #mathQuiz, #abc{
+    margin: 3em;
+    padding: 1em;
+    border-radius: 1em;
+    max-width: 25%;
+    background-color: rgba(245, 147, 19,1);
+}
+
+#links a{
+    color: rgb(129, 26, 226);
+}
+
 .dasmotos, .mathQuiz, .abc{
+    
     font-size: 14px;
+    font-weight: bolder;
     font-family: 'Raleway', sans-serif;
 }
 /*Still trying to get this hover effect to work*/
@@ -156,7 +182,7 @@ html{
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(5, 1fr);
     width: auto;
-    max-height: 450px;
+    max-height: 440px;
 }
 
 #artLeft, #artRight{
@@ -221,7 +247,6 @@ footer{
         color: green;
         font-size: 2em;
     }
-
     
    #gallery{
        flex-direction: column;
@@ -239,4 +264,37 @@ footer{
     .dasmotos, .mathQuiz, .abc{
         font-size: 0.9em;
     }
+
+    #dasmotos, #mathQuiz, #abc{
+        max-width: 50%;
+    }
    }
+
+@media only screen and (min-device-height: 925px){
+
+    #main{
+        height: 900px;
+    }
+
+    #info{
+        max-width: 75%;
+        font-size: 18px;
+    }
+
+    #display{
+        display: flex;
+        font-size: 16px;
+        line-height: 2em;
+        min-height: 900px;
+        align-items: center;
+        max-width: 25%;
+    }
+
+    #artGallery{
+        max-height: 800px;
+    }
+
+    #viewImage img{
+        max-height: 800px;
+    }
+}

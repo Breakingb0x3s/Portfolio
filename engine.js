@@ -80,6 +80,13 @@ let changeDisplays = (event) =>{
             document.getElementById('projects').remove();
             sideDisplay.innerHTML = '<div id="pdescriptions"><div class="dasmotos"><p>This was one of my first projects, just a reminder of how far I have come since</p></div><div class="mathQuiz"><p>Made a simple Math Quiz application to test kids and quickly give them a grade.  I am hoping to make it a bit more complex in the future.</p></div><div class="abc"><p>This was completely made out of necessity for my kids, first time really learning how to manipulate the DOM.</p></div></div>';
             document.getElementById(displayData.id).addEventListener('click', changeDisplays);
+            //Below are Project explanation events
+            document.getElementById('dasmotos').getElementsByTagName('a')[0].addEventListener('mouseover', ()=>{
+            document.getElementById('pdescriptions').getElementsByClassName('dasmotos').style.color = 'lime';
+            }, false);
+            document.getElementById('dasmotos').getElementsByTagName('a')[0].addEventListener('mouseleave', ()=>{
+            document.getElementsByClassName('dasmotos').hidden = true;
+            }, false);
             break;
         case 'art':
             switch(mainDisplay.children[0].id){
@@ -155,7 +162,7 @@ let changeDisplays = (event) =>{
             mainDisplay.innerHTML = '<div class="mainCard" id="mainUpdates">' + updates.innerHTML + '</div>';
             gallery.appendChild(displayData);
             document.getElementById('updates').remove();
-            sideDisplay.innerHTML = 'TBD'
+            sideDisplay.innerHTML = '<div class="contact"><img src="https://www.clipartmax.com/png/middle/457-4579559_gudetama-egg-sanrio-cute-kawaii-yolk-gudetama-cute.png" alt="#gudetama #egg #sanrio #cute #kawaii #yolk - Gudetama Cute@clipartmax.com"><br><br><h3>Contact Me:</h3><ul><li>emal: rtrobinson28@gmail.com</li><li><a href="https://www.linkedin.com/in/riley-robinson-0a19605b/">LinkedIn</a></li></ul></div>';
             document.getElementById(displayData.id).addEventListener('click', changeDisplays);
             break;
         case 'aboutMe':
