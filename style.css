@@ -273,7 +273,7 @@ footer{
 @media only screen and (min-device-height: 925px){
 
     #main{
-        height: 900px;
+        height: 800px;
     }
 
     #info{
@@ -285,16 +285,16 @@ footer{
         display: flex;
         font-size: 16px;
         line-height: 2em;
-        min-height: 900px;
+        min-height: 800px;
         align-items: center;
         max-width: 25%;
     }
 
     #artGallery{
-        max-height: 800px;
+        max-height: 750px;
     }
 
     #viewImage img{
-        max-height: 800px;
+        max-height: 750px;
     }
 }
