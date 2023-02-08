@@ -81,11 +81,11 @@ let changeDisplays = (event) =>{
             sideDisplay.innerHTML = '<div id="pdescriptions"><div class="dasmotos"><p>This was one of my first projects, just a reminder of how far I have come since</p></div><div class="mathQuiz"><p>Made a simple Math Quiz application to test kids and quickly give them a grade.  I am hoping to make it a bit more complex in the future.</p></div><div class="abc"><p>This was completely made out of necessity for my kids, first time really learning how to manipulate the DOM.</p></div></div>';
             document.getElementById(displayData.id).addEventListener('click', changeDisplays);
             //Below are Project explanation events
-            document.getElementById('dasmotos').getElementsByTagName('a')[0].addEventListener('mouseover', ()=>{
-            document.getElementById('pdescriptions').getElementsByClassName('dasmotos').style.color = 'lime';
+            document.getElementById('dasmotos').addEventListener('mouseover', ()=>{
+            document.getElementById('pdescriptions').getElementsByClassName('dasmotos').style.opacity = 1;
             }, false);
             document.getElementById('dasmotos').getElementsByTagName('a')[0].addEventListener('mouseleave', ()=>{
-            document.getElementsByClassName('dasmotos').hidden = true;
+            document.getElementsByClassName('dasmotos').style.opacity = 0;
             }, false);
             break;
         case 'art':
