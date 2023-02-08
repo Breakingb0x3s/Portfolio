@@ -261,6 +261,10 @@ footer{
        max-width: 100%;
    }
 
+   .card{
+        font-size: 24px;
+   }
+
    #artGallery{
         max-height: max-content;
    }
