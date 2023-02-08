@@ -263,6 +263,7 @@ footer{
 
    .card{
         font-size: 24px;
+        padding-left: 1em;
    }
 
    #artGallery{
