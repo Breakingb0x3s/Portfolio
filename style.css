@@ -76,6 +76,7 @@ html{
     border-radius: 5px;
     width: 100px;
     height: 150px;
+    color: rgb(0, 255, 0);
     background-color:blueviolet;
     transition: 0.3s;
     box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.5);
@@ -101,11 +102,13 @@ html{
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    color: #FF06B5;
 }
 
 
 #projects{
     font-family: 'Raleway', sans-serif;
+    font-weight: 400;
     opacity: 0;
     animation: drop 0.8s linear forwards 0.2s;
     transition: 1s;
@@ -115,6 +118,8 @@ html{
     background-image: url(https://breakingb0x3s.github.io/Portfolio/img/projectsCard);
     background-position: center;
     background-size: cover;
+    font-weight: 600;
+    color: #FF06B5;
 }
 
 #updates{
@@ -151,6 +156,7 @@ html{
     background-image: url(https://breakingb0x3s.github.io/Portfolio/img/115906251.png);
     background-position: center;
     background-size: cover;
+    color: rgb(255, 236, 249);;
 }
 
 /*Below are custom styles for the different sideDisplay states the first set is projects*/
@@ -254,6 +260,14 @@ footer{
        margin-bottom: 10em;
        max-width: 100%;
    }
+
+   #artGallery{
+        max-height: max-content;
+   }
+
+   #viewImage img{
+        max-height: max-content;
+   }
    
     .card{
        width: 415px;
@@ -273,7 +287,7 @@ footer{
 @media only screen and (min-device-height: 925px){
 
     #main{
-        height: 800px;
+        height: 900px;
     }
 
     #info{
@@ -291,10 +305,10 @@ footer{
     }
 
     #artGallery{
-        max-height: 750px;
+        max-height: 780px;
     }
 
     #viewImage img{
-        max-height: 750px;
+        max-height: 780px;
     }
 }
