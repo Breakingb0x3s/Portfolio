@@ -212,7 +212,7 @@ html{
 }
 
 #viewImage{
-    grid-area: 1 / 1 / span 5 / 10; 
+    grid-area: 1 / 1 / span 5 / 11; 
 }
 
 #viewImage img{
