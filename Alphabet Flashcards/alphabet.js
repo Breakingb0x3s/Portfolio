@@ -19,9 +19,13 @@ let getRandomABC = () =>{
     if(abc.length === 0){
         alert('Now you know your ABCs! Yay!')
     }else{
+        if(letter.innerHTML === 'Ready?'){
+            alert("Let's go!!!")
+        }else{
+            alert('You got it, good job!')
+        }
         let b = document.createElement('li');
         b.innerHTML = letter.innerHTML;
-        alert('You got it, good job!')
         //Updated this function with an if else statement, previous version was cutting the letter that it changed to instead of the previous letter on screen
         if(letter.innerHTML === 'Ready?'){
             let a = Math.floor(Math.random() * 52);
