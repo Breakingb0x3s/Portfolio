@@ -6,9 +6,19 @@
     </head>
     <body>
         <center><h1>Let's learn the alphabet</h1></center>
+        <center><h2>Please select a course</h2>
+        <form><input type="radio" name="course" id="full" value="full" disabled="true">
+            <label for="full">All cases</label>
+        <input type="radio" name="course" id="custom" value="custom" disabled="true">
+            <label for="custom">Custom Course</label>
+            <br>
+            <div id="cChoice" hidden="true"><input type="radio" name="choice" id="Capitals" value="Capitals">
+                <label for="Capitals">Only Capitals</label>
+            <input type="radio" name="choice" id="lowerCase" value="lowerCase">
+                <label for="lower case">only lower case</label></div></form></center>
 
         <div id ="display"><p id='alphabet'>Ready?</p><img id ="aImg" hidden src=""/></div>
-        <div id="buttons"><button id='good'>Got it!</button> <button id="miss">Miss!</button></div>
+        <div id="buttons"><button id='good' disabled="false">Got it!</button> <button id="miss" hidden="true">Miss!</button></div>
     
         <div id = "lists"><ul id="goodWords"></ul><ul id="badWords"></ul></div>
 
