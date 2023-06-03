@@ -9,10 +9,14 @@ let aImg = document.getElementById('aImg');
 let miss = document.getElementById('miss');
 let choiceAll = document.getElementsByName('course');
 let choiceCus = document.getElementsByName("choice");
-let cCustom = document.getElementById('cChoice');
+const cCustom = document.getElementById('cChoice');
 const goodList = document.getElementById('goodWords');
 const badList = document.getElementById('badWords');
 let abc = [];
+const goodCounter = document.getElementById('goodCount');
+const missCounter = document.getElementById('missCount');
+let goodCount = 0;
+let missCount = 0;
 
 for(let i = 0; i < choiceAll.length; i++){
     choiceAll[i].onclick = selectValue;
@@ -28,7 +32,7 @@ function selectValue(){
     if(this.value == "full"){
         goodJob.disabled = false;
         abc = allLetters;
-        cCustom.hidden = true;  //This is where I left off, everything is currently working as intended, need to add fuction to the custom class and then address the start number value. (Small idea, might help using ceiling instead of floor for MATH calculations on custom list limits)
+        cCustom.hidden = true;  //This is where I left off, everything is currently working as intended, need to add fuction to the custom class and then address the start number value. (Small idea, might help using ceiling instead of floor for MATH calculations on custom list limits) ***Update, I just switched the 52 to abc.length-1, unsure why it wasn't working before but is working now.  Leaving this here in case there's an error in the future this can be a reference point.
     }else if(this.value == "custom"){
         goodJob.disabled = true;
         cCustom.hidden = false;
@@ -56,17 +60,23 @@ let missNew = () =>{
     let c = document.createElement('li');
     c.innerHTML = letter.innerHTML;
     badList.appendChild(c);
+    missCount += 1;
+    missCounter.innerHTML = missCount;
     alert("We'll try again later");
     let a = Math.floor(Math.random() * abc.length);
     letter.innerHTML = abc[a];
 }
 
 let getRandomABC = () =>{
-    if(abc.length === 0){
+    console.log(abc);
+    if(abc.length === 1){
         for(let i = 0; i < choiceAll.length; i++){
             choiceAll[i].disabled = false;
         }
         alert('Now you know your ABCs! Yay!')
+        goodCount = 0;
+        missCount = 0;
+        goodCounter.innerHTML = "";
         miss.hidden = true;
         removeAllChildNodes(goodList);
         removeAllChildNodes(badList);
@@ -85,11 +95,15 @@ let getRandomABC = () =>{
                 choiceAll[i].disabled = true;
             }
             miss.hidden = false;
+            goodCounter.innerHTML = goodCount;
+            missCounter.innerHTML = missCount;
             let a = Math.floor(Math.random() * abc.length-1);  //...Well this is going to cause problems later.  I can solve now with an else statement, but taking into account unpredicatable amounts of numbers for custom entry courses will be a pain in the butt.
             letter.innerHTML = abc[a];
         }else{
             goodList.appendChild(b);
             abc.splice(abc.indexOf(letter.innerHTML),1);
+            goodCount += 1;
+            goodCounter.innerHTML = goodCount;
             let a = Math.floor(Math.random() * abc.length);
             letter.innerHTML = abc[a];
         }
