@@ -60,7 +60,7 @@ const addStartUp = () =>{
             addDots.disabled = false;
             console.log("The field has value")
         }
-    })
+    });
     //The above function was a little bit annoying.  If I didn't include the || with the null part it would erase whatever was typed in the input.  Make sure to take account of Null
     addDots.innerHTML = "Check Answer"
     addDots.disabled = true;
@@ -68,13 +68,14 @@ const addStartUp = () =>{
 }
 
 let generateProblem = () =>{
+    addDots.disabled = true;
     let leftSide = document.getElementById("leftDots");
     let rightSide = document.getElementById("rightDots");
     let solution = document.getElementById("bestGuess");
 
     leftSide.innerHTML = "";
     rightSide.innerHTML = "";
-    solution.value = "";
+    solution.value = null;
 
     let newDot = document.createElement('div');
     let otherDot = document.createElement('div');
