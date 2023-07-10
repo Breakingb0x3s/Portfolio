@@ -50,7 +50,7 @@ const addStartUp = () =>{
     dotContainer.appendChild(dot1);
     dotContainer.appendChild(dot2);
     dotContainer.appendChild(addSolution);
-    //Pausing here, tested the above code and everything is situated about where I want them, CSS will be a pain but will worry about that later
+    //Tested the above code and everything is situated about where I want them, CSS will be a pain but will worry about that later
     action.disabled = true;
     document.getElementById("bestGuess").addEventListener('change', ()=>{
         if(document.getElementById("bestGuess").value == "" || document.getElementById("bestGuess").value == null){
@@ -68,6 +68,7 @@ const addStartUp = () =>{
 }
 
 let generateProblem = () =>{
+    addDots.innerHTML = "Check Answer"
     addDots.disabled = true;
     let leftSide = document.getElementById("leftDots");
     let rightSide = document.getElementById("rightDots");
@@ -94,9 +95,31 @@ let generateProblem = () =>{
     }
 
     console.log('The answer is ' + (variableOne + variableTwo));
-    //Stopping here, need to make a function for checking the guess.  If the guess is wrong I don't want the above function to run, however if it is correct I want a popup to congradulate the user and then run the above code for a new problem.
+    console.log('The left side has ' + leftSide.childElementCount + ' dots');
+    console.log('The right side has ' + rightSide.childElementCount + ' dots');
+
+    addDots.addEventListener('click', checkSolution);
+    addDots.removeEventListener('click', generateProblem);
+    //Need to make a function for checking the guess.  If the guess is wrong I don't want the above function to run, however if it is correct I want a popup to congradulate the user and then run the above code for a new problem.
 }
 
+let checkSolution = () =>{
+    let guess = document.getElementById("bestGuess").value * 1;
+
+    if(guess === (document.getElementById("leftDots").childElementCount + document.getElementById("rightDots").childElementCount)){
+        if(window.confirm("You got it! Want to do another one? 😽")){
+            generateProblem();
+        }else{
+            location.reload();
+        };
+        
+    }else if(guess > (document.getElementById("leftDots").childElementCount + document.getElementById("rightDots").childElementCount)){
+        alert('That guess seems high, please count all of the dots again 🤔');
+    }else{
+        alert('That guess is a bit too low. How about we try again? 😅');
+    }
+}
+//Stopping here, finished the checkSolution function and it is working as intended, but I reeeeeally need to do the CSS next 😒 but this isn't the end of the world, I will survive.
 let generateDots = () =>{
     dotContainer.innerHTML = "";
     let newDot = document.createElement('div');
