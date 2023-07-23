@@ -59,7 +59,7 @@ h1, #action{
 
 /*Mobile View*/
 
-@media only screen and (max-device-width: 415px){
+@media only screen and (max-device-width: 600px){
     .container{
         grid-template-columns: repeat(2, 1fr);
         max-width:fit-content;
