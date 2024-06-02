@@ -64,6 +64,7 @@ const numLimit = () =>{
 
 let countingNumber = ()=>{
     //Current stoping point as of 5/15. This function will generate the number and the guesses (2 wrong and 1 right guess) for what comes after the generated number
+    document.getElementById("guessDisplay").innerHTML = ""; //Reset's the guess display for each roll.
     let numberSelect = Math.floor(Math.random() * (numberPool.length - 1));  //Generates a valid index number to select from numberPool
     let currentNumber = numberPool[numberSelect];
     
@@ -99,6 +100,23 @@ let countingNumber = ()=>{
     console.log(answer);
     console.log(guess1);
     console.log(guess2);
+
+    //Stopping point for 6/1/24.  Below is the random guess generator.  It randomly assigns the guesses for the question.  Still need to have dots generated for each of the choices.
+
+    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><form><input type="radio" name="guessS" id="guessS" value="full" disabled="false"><label for="guessS">' + answer + '</label></form>';
+    let lguess = '<div class="lNumber" id="l">' + guess1 + '</div><div id="lDot"></div><form><input type="radio" name="guessL id="guessL" value="full" disabled="false"><label for="guessL">' + guess1 + '</label></form>';
+    let dguess = '<div class="dNumber" id="d">' + guess2 + '</div><div id="dDot"></div><form><input type="radio" name="guessD id="guessD" value="full" disabled="false"><label for="guessD">' + guess2 + '</label></form>';
+
+    let responses = [aguess, lguess, dguess];
+    console.log(responses.length);
+    do{
+        let newPosition = Math.floor(Math.random() * (responses.length - 1));
+        let problem = document.createElement('div');
+        problem.setAttribute("class", "guess");
+        problem.innerHTML = responses[newPosition];
+        document.getElementById("guessDisplay").appendChild(problem);
+        responses.splice(newPosition,1);
+    } while (responses.length > 0);
 
     //Stopping here for now.  The function does correctly generate the answer and two unique incorrect guesses.  I need to figure out the best way to generate these in the DOM.  I'm thinking of just creating a div and have the order they appended to the 'guesses' div be random.  I may need to physically draw this as I'm having a little trouble visualizing it in my head, but there should be the number with dots below it and a radio button beneath the dots for that answer.  Will need Sabi's input on the CSS and naming conventions.
     //Also need to have the currentNumber removed from the NumberPool if the correct answer is chosen to prevent repeat questions.
