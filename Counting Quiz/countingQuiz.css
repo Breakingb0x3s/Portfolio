@@ -4,3 +4,45 @@
     height: 10px;
     width: 10px;
 }
+
+.adot{
+    border-radius: 50%;
+    background-color: rgb(30, 179, 74);
+    height: 10px;
+    width: 10px;
+}
+
+.bdot{
+    border-radius: 50%;
+    background-color: rgb(171, 34, 206);
+    height: 10px;
+    width: 10px;
+}
+
+.cdot{
+    border-radius: 50%;
+    background-color: rgb(58, 125, 226);
+    height: 10px;
+    width: 10px;
+}
+
+.ddot{
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    height: 10px;
+    width: 10px;
+}
+
+.edot{
+    border-radius: 50%;
+    background-color: rgb(224, 105, 36);
+    height: 10px;
+    width: 10px;
+}
+
+.fdot{
+    border-radius: 50%;
+    background-color: rgb(21, 198, 221);
+    height: 10px;
+    width: 10px;
+}

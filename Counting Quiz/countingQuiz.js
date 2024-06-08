@@ -103,9 +103,9 @@ let countingNumber = ()=>{
 
     //Stopping point for 6/1/24.  Below is the random guess generator.  It randomly assigns the guesses for the question.  Still need to have dots generated for each of the choices.
 
-    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><form><input type="radio" name="guessS" id="guessS" value="full" disabled="false"><label for="guessS">' + answer + '</label></form>';
-    let lguess = '<div class="lNumber" id="l">' + guess1 + '</div><div id="lDot"></div><form><input type="radio" name="guessL id="guessL" value="full" disabled="false"><label for="guessL">' + guess1 + '</label></form>';
-    let dguess = '<div class="dNumber" id="d">' + guess2 + '</div><div id="dDot"></div><form><input type="radio" name="guessD id="guessD" value="full" disabled="false"><label for="guessD">' + guess2 + '</label></form>';
+    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><form><input type="radio" name="guessS" id="guessS" value="full" disabled="false"><label for="guessS"></label></form>';
+    let lguess = '<div class="lNumber" id="l">' + guess1 + '</div><div id="lDot"></div><form><input type="radio" name="guessL id="guessL" value="full" disabled="false"><label for="guessL"></label></form>';
+    let dguess = '<div class="dNumber" id="d">' + guess2 + '</div><div id="dDot"></div><form><input type="radio" name="guessD id="guessD" value="full" disabled="false"><label for="guessD"></label></form>';
 
     let responses = [aguess, lguess, dguess];
     console.log(responses.length);
@@ -118,7 +118,36 @@ let countingNumber = ()=>{
         responses.splice(newPosition,1);
     } while (responses.length > 0);
 
-    //Stopping here for now.  The function does correctly generate the answer and two unique incorrect guesses.  I need to figure out the best way to generate these in the DOM.  I'm thinking of just creating a div and have the order they appended to the 'guesses' div be random.  I may need to physically draw this as I'm having a little trouble visualizing it in my head, but there should be the number with dots below it and a radio button beneath the dots for that answer.  Will need Sabi's input on the CSS and naming conventions.
+    let guessDots = () =>{
+        let colorDots = ["adot", "bdot", "cdot", "ddot", "edot", "fdot"];
+        let randomColor, randomColor2, randomColor3;
+        do{
+            randomColor = Math.floor(Math.random() * (colorDots.length - 1));
+            randomColor2 = Math.floor(Math.random() * (colorDots.length - 1));
+            randomColor3 = Math.floor(Math.random() * (colorDots.length - 1));
+        } while (randomColor === randomColor2 || randomColor === randomColor3 || randomColor2 === randomColor3);
+
+        for(a=0; a < answer; a++){
+            let gDot = document.createElement('div');
+            gDot.setAttribute("class", colorDots[randomColor]);
+            document.getElementById('sDot').appendChild(gDot.cloneNode(true));
+        }
+
+        for(b=0; b < guess1; b++){
+            let wDot = document.createElement('div');
+            wDot.setAttribute("class", colorDots[randomColor2]);
+            document.getElementById('lDot').appendChild(wDot.cloneNode(true));
+        }
+
+        for(c=0; c < guess2; c++){
+            let hDot = document.createElement('div');
+            hDot.setAttribute("class", colorDots[randomColor3]);
+            document.getElementById('dDot').appendChild(hDot.cloneNode(true));
+        }
+        console.log(colorDots.length);
+    }
+    guessDots();
+    //Above is the function to generate the dots for the guesses, this might be able to be combined to function that generates dots for the question as well.  Need to work on the CSS before I continue with the function of the game.
     //Also need to have the currentNumber removed from the NumberPool if the correct answer is chosen to prevent repeat questions.
 }
 
