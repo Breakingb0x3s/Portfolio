@@ -103,9 +103,9 @@ let countingNumber = ()=>{
 
     //Stopping point for 6/1/24.  Below is the random guess generator.  It randomly assigns the guesses for the question.  Still need to have dots generated for each of the choices.
 
-    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><form><input type="radio" name="guessS" id="guessS" value="full" disabled="false"><label for="guessS"></label></form>';
-    let lguess = '<div class="lNumber" id="l">' + guess1 + '</div><div id="lDot"></div><form><input type="radio" name="guessL id="guessL" value="full" disabled="false"><label for="guessL"></label></form>';
-    let dguess = '<div class="dNumber" id="d">' + guess2 + '</div><div id="dDot"></div><form><input type="radio" name="guessD id="guessD" value="full" disabled="false"><label for="guessD"></label></form>';
+    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><input type="radio" name="dotGuess" id="guessS" value="' + answer + '><label for="guessS"></label>';
+    let lguess = '<div class="lNumber" id="l">' + guess1 + '</div><div id="lDot"></div><input type="radio" name="dotGuess" id="guessL" value="' + guess1 + '"><label for="guessL"></label>';
+    let dguess = '<div class="dNumber" id="d">' + guess2 + '</div><div id="dDot"></div><input type="radio" name="dotGuess" id="guessD" value="' + guess2 + '"><label for="guessD"></label>';
 
     let responses = [aguess, lguess, dguess];
     console.log(responses.length);
