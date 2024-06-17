@@ -64,6 +64,31 @@
     flex-direction: row;
 }
 
+#scoreBoard{
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.score{
+    font-size: 14px;
+    font-weight: bolder;
+    max-width: 25%;
+    margin-top: 1em;
+}
+
+#cA{
+    margin-left: auto;
+    margin-right: 5%;
+    color: green;
+}
+
+#bA{
+    margin-right: auto;
+    margin-left: 5%;
+    color: red;
+}
+
 .guess{
     font-size: 18px;
     font-weight: 600;
@@ -96,6 +121,8 @@
 #start:hover{
     border-color: black;
 }
+
+.
 
 input[type='radio']{
     transform: scale(1.5);

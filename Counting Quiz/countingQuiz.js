@@ -25,6 +25,7 @@ const numLimit = () =>{
             }
             for(i = 0; i < cLimit; i++){
                 numberPool.push(i);
+                guessPool.push(i); //adjusted this from just being guessPool = numberPool, believe somewhere during the splicing event on the guess function it seems to be impacting the guess pool which it should not. Just finished testing and this was indeed the issue, but I don't completely get why.  May be a hoisting issue?
             }
     }else if(numQuestions > 10){
         alert("I see you would like a challenge, but let's limit it to 10 times.");
@@ -39,6 +40,7 @@ const numLimit = () =>{
         }
         for(i = 0; i < cLimit; i++){
             numberPool.push(i);
+            guessPool.push(i);
         }
     }else{
         failLimit = numQuestions + 2;
@@ -51,13 +53,23 @@ const numLimit = () =>{
         }
         for(i = 0; i < cLimit; i++){
             numberPool.push(i);
+            guessPool.push(i);
         }
     }
-    guessPool = numberPool;
+    goalLimit = numQuestions;
 
-    console.log(numQuestions);
-    console.log(numberPool);
-    console.log(guessPool);
+
+    const playerController = document.getElementById("start");
+    const buttonEngage = ()=>{
+        playerController.removeEventListener('click', numLimit);
+        playerController.innerHTML = "Thinking...";
+        playerController.setAttribute("class", "activeButton");
+        playerController.addEventListener('click', numberGuess);
+    };
+
+    document.getElementById("scoreBoard").innerHTML = "";
+
+    buttonEngage();
     countingNumber();
     //Will need to add a trigger to have the game load another function to start the game
 }
@@ -96,14 +108,10 @@ let countingNumber = ()=>{
         guess2 = guessPool[badGuess2];
     } while (guess2 === currentNumber || guess2 === answer || guess2 === guess1);
 
-    console.log(currentNumber);
-    console.log(answer);
-    console.log(guess1);
-    console.log(guess2);
 
     //Stopping point for 6/1/24.  Below is the random guess generator.  It randomly assigns the guesses for the question.  Still need to have dots generated for each of the choices.
 
-    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><input type="radio" name="dotGuess" id="guessS" value="' + answer + '><label for="guessS"></label>';
+    let aguess = '<div class="gNumber" id="s">' + answer + '</div><div id="sDot"></div><input type="radio" name="dotGuess" id="guessS" value="' + answer + '", required><label for="guessS"></label>'; //Had to add a required tag so non-selections won't go through.  Still need to add an alert letting the user know they need to select an answer. - 6/17/24
     let lguess = '<div class="lNumber" id="l">' + guess1 + '</div><div id="lDot"></div><input type="radio" name="dotGuess" id="guessL" value="' + guess1 + '"><label for="guessL"></label>';
     let dguess = '<div class="dNumber" id="d">' + guess2 + '</div><div id="dDot"></div><input type="radio" name="dotGuess" id="guessD" value="' + guess2 + '"><label for="guessD"></label>';
 
@@ -146,9 +154,66 @@ let countingNumber = ()=>{
         }
         console.log(colorDots.length);
     }
+
+    if(document.getElementById("scoreBoard").childElementCount == 0){
+
+        let correctAnswers = document.createElement('div');
+            correctAnswers.setAttribute("class", "score");
+            correctAnswers.setAttribute("id", "cA");
+            correctAnswers.innerHTML = 0;
+        let incorrectAnswers = document.createElement('div');
+            incorrectAnswers.setAttribute("class", "score");
+            incorrectAnswers.setAttribute("id", "bA");
+            incorrectAnswers.innerHTML = 0;
+        document.getElementById("scoreBoard").appendChild(correctAnswers);
+        document.getElementById("scoreBoard").appendChild(incorrectAnswers);
+    };
+
     guessDots();
     //Above is the function to generate the dots for the guesses, this might be able to be combined to function that generates dots for the question as well.  Need to work on the CSS before I continue with the function of the game.
     //Also need to have the currentNumber removed from the NumberPool if the correct answer is chosen to prevent repeat questions.
+}
+
+let numberGuess = ()=>{
+    let userGuess = document.querySelector('input[name="dotGuess"]:checked').value;
+    let correctGuess = document.getElementById("s").innerHTML;
+    let greenScore = document.getElementById("cA").innerHTML * 1;
+    let redScore = document.getElementById("bA").innerHTML * 1;
+// Believe I have removed all unnecessary console.logs as of 6/17/24
+// The numberGuess function compares the guess to the answer, then identifies if this is a winning or loosing turn based on the logged score.  If the user wins or looses it should reload to start a new round.
+
+    if(userGuess == correctGuess){
+        greenScore += 1;
+        document.getElementById("cA").innerHTML = greenScore;
+        numberPool.splice(numberPool.indexOf((document.getElementById("promptPort").innerHTML * 1)), 1);
+        if(goalLimit == greenScore){
+            alert('You Did it! You got ' + goalLimit + ' correct!');
+            document.getElementById('start').addEventListener('click', numLimit);
+            document.getElementById('start').innerHTML = "Let's begin";
+            document.getElementById('start').removeAttribute("class", "activeButton");
+            document.getElementById("guessDisplay").innerHTML = "";
+            document.getElementById('communication').innerHTML = "Want to try again?";
+            document.getElementById('start').removeEventListener('click', numberGuess);
+        }else{
+            alert('Good job!');
+            countingNumber();
+        }
+    }else{
+        redScore += 1;
+        document.getElementById("bA").innerHTML = redScore;
+        if(failLimit == redScore){
+            alert("Let's practice our counting and try again later");
+            document.getElementById('start').addEventListener('click', numLimit);
+            document.getElementById('start').innerHTML = "Let's begin";
+            document.getElementById('start').removeAttribute("class", "activeButton");
+            document.getElementById('communication').innerHTML = "Want to try again?"
+            document.getElementById('start').removeEventListener('click', numberGuess);
+            document.getElementById("guessDisplay").innerHTML = "";
+        }else{
+            alert('Not quite. You can only miss ' + (failLimit - redScore) + ' more questions');
+            countingNumber();
+        }
+    }
 }
 
 document.getElementById('start').addEventListener('click', numLimit);
