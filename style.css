@@ -161,7 +161,7 @@ html{
 
 /*Below are custom styles for the different sideDisplay states the first set is projects*/
 
-#dasmotos, #mathQuiz, #abc, #countingDots{
+#dasmotos, #mathQuiz, #abc, #countingDots, #countingQuiz{
     margin: 3em;
     padding: 1em;
     border-radius: 1em;
