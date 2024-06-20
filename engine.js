@@ -14,9 +14,8 @@ let cardData, displayData;
 
 //Testing, I will attempt to have the project contents switch to the main and side displays when clicked, but then need the aboutMe info to be stored in the clicked on card.  Need to take into account if the next card clicked, the aboutMe info doesn't accidently erase previous card data.
 let nextArt = () =>{
-
     let currentImage = pictures.indexOf(document.getElementById('viewImage').innerHTML);
-    if(currentImage === (pictures.length)){
+    if(currentImage === 2){
         document.getElementById('viewImage').innerHTML = pictures[0];
         sideDisplay.innerHTML = picDescriptions[0];
     }else{
@@ -30,11 +29,11 @@ let lastArt = () =>{
 
     let currentImage = pictures.indexOf(document.getElementById('viewImage').innerHTML);
     if(currentImage === 0){
-        document.getElementById('viewImage').innerHTML = pictures[pictures.length];
-        sideDisplay.innerHTML = picDescriptions[pictures.length];
+        document.getElementById('viewImage').innerHTML = pictures[(pictures.length - 1)];
+        sideDisplay.innerHTML = picDescriptions[(pictures.length - 1)];
     }else{
-        document.getElementById('viewImage').innerHTML = pictures[currentImage-1];
-        sideDisplay.innerHTML = picDescriptions[currentImage-1];
+        document.getElementById('viewImage').innerHTML = pictures[currentImage - 1];
+        sideDisplay.innerHTML = picDescriptions[currentImage - 1];
     }
     
 }

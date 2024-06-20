@@ -122,9 +122,7 @@
     border-color: black;
 }
 
-.
-
-input[type='radio']{
+.input[type='radio']{
     transform: scale(1.5);
     margin: 10px;
     vertical-align: middle;
