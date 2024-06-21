@@ -146,6 +146,14 @@ html{
     100%{transform: translateY(0px) scaleY(1); opacity: 1;}
 }
 
+@keyframes slide {
+    0% {transform: translateX(-75%) scaleX(0.25); opacity: 0;}
+    25% {transform: translateX(-35%) scaleX(0.5); opacity: 0.3;}
+    50% {transform: translate(-77%) scaleX(0); opacity: 0.5;}
+    75% {transform: translateX(-35%) scaleX(0.5); opacity: 0.7;}
+    100% {transform: translateX(0px) scaleX(1); opacity: 1;}
+}
+
 #aboutMe{
     transition: 1s;
     opacity: 0;
@@ -220,6 +228,8 @@ html{
     width: 100%;
     max-height: 480px;
     object-fit: contain;
+    transition: 1s;
+    animation: slide 0.8s linear forwards;
 }
 
 /*Footer*/
