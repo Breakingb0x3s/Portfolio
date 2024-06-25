@@ -104,7 +104,7 @@ const pictures = [zune, gulllina, foxtattoo, panda, timekiller, joker, groot, iv
 //const picDescriptions = ['<h2>Zune</h2><h4>2009</h4><br><p>This is an OC (original character) I designed with my younger brother, she was heavily inspired by Spike Segal and Shinobu Jacobs.  <br>The naming convention was inspired by Akira Toriyama, but instead of naming our characters after food we used music players.  <br>His OC was named San for "Sandisk"</p>','<h2>Gull & Lina</h2><h4>2010</h4><br><p>This is of two original characters, mine Gull (who is riding in front with the eyepatch) and Lina who was created by my old friend on DeviantArt who went by Tofubeast.  <br>This was a recreaction of the cover of Dragon Ball vol. 2</p>','<h2>Flower Fox</h2><h4>2009</h4><br><p>This was a tattoo that was commissioned by my friend who goes by DJ Taifu.  I had a lot of fun working with the curves and trying to make them fluid.  This was one of the first pieces I made for a tattoo.</p>','<h2>Panda eyes</h2><h4>~2007</h4><br><p>This was a piece I did around Halloween, I originally posted in 2007 but it was sitting in my sketch book for a while.  I wanted to compare my cartoonish style vs a more realistic take on the same subject.</p>','<h2>Time is a Killer</h2><h4>2008</h4><br><p>This brings back memories.  I made this piece shortly after beating the game The World Ends With You for the Nintendo DS.  I was smitten with the character designs and overall positive punk feel of the game and tried to capture that feeling with this piece.</p>','<h2>Drop Dead Georgous</h2><h4>2008</h4><br><p>I was pretty proud of this piece but it is obviously unfinished.  I would like to find time to do an updated version of this, I like the concept but the lack of a real background takes away from any real impact this piece could have.</p>','<h2>Robin and Groot</h2><h4>2024</h4><p>Someone I met online had requested this picture after seeing "Ivorys Monster", I decided in 2024 to do at least one piece of art every month.  I thought about this request to get me started, and it was a lot of fun, despite the flaws.</p>','<h2>Ivorys Monster</h2><h4>2023</h4><p>My daughters love the movie, Monsters Inc.  Ivory asked for a picture of Sully and Boo, but I decided to switch Boo out for Ivory so she could feel a little special.</p>','<h2>Ramen Pool</h2><h4>2023</h4><p>After Ivorys picture, Kyalah also wanted one so I asked her who her favorite character was and she said Gudetama, and she wanted to be in the fridge with him, I did not want to draw racks, so I drew her and Gudetama in a ramen bath</p>', '<h2>Mom and me</h2><h4>2024</h4><p>This was my February submission for my personal challenge.  Its my mom playing SuperMarioBros. with me.  Love you Mom</p>'];
 //Main components of the portfolio are listed above
 let cardData, displayData;
-
+let artCount = 0;
 
 //Testing, I will attempt to have the project contents switch to the main and side displays when clicked, but then need the aboutMe info to be stored in the clicked on card.  Need to take into account if the next card clicked, the aboutMe info doesn't accidently erase previous card data.
 
@@ -115,9 +115,23 @@ let nextArt = () =>{
             if(p == (pictures.length - 1)){
                 document.getElementById('viewImage').innerHTML = pictures[0].img;
                 sideDisplay.innerHTML = pictures[0].title + pictures[0].year + pictures[0].desc;
+                artCount += 1;
+                    if(artCount > 2){
+                        document.getElementById('viewImage').style.animation = 'slide 0.8s linear forwards';
+                    }else if(artCount == 1){
+                        document.getElementById('viewImage').style.removeProperty('animation');
+                    }
                 break;
             }else{
                 let nextImage = p + 1;
+                artCount += 1;
+                    if(artCount > 2){
+                        document.getElementById('viewImage').style.animation = 'slide 0.8s linear forwards';
+                        console.log(artCount);
+                        artCount = 0;
+                    }else if(artCount == 1){
+                        document.getElementById('viewImage').style.removeProperty('animation');
+                    }
                 document.getElementById('viewImage').innerHTML = pictures[nextImage].img;
                 sideDisplay.innerHTML = pictures[nextImage].title + pictures[nextImage].year + pictures[nextImage].desc;
             }

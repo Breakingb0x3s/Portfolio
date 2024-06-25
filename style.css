@@ -229,7 +229,7 @@ html{
     max-height: 480px;
     object-fit: contain;
     transition: 1s;
-    animation: slide 0.8s linear forwards;
+    
 }
 
 /*Footer*/
