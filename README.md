@@ -32,3 +32,9 @@ I'm far too unfamiliar with CSS, been struggling to get basic design down, at le
 
 This should be the most simple, when clicked on I want it to show the 3 most recent updates.
 I can create these updates as I work on the project.
+
+#### Dev Updates
+
+Using this for personal thoughts towards this Portfolio of mine.  I have had a lot of fun updating this over the past few weeks, mostly thanks to Sabrina who has agreed to tutor me a bit.  I have added an animation to my art gallery (it does not activate every time by design) and have realized that some projects just evolve, on their own.
+I started making the alphabet Quiz for the twins, which made me think of the Math Quiz project for my younger brother, which then turned to the counting dots project which has now evolved to the counting quiz project.  
+It's truely amazing how these ideas can just lead into completely new ideas and understanding.  I need to take my learning more seriously so I can do this professionally, but I'm pretty proud that I was able to do what I can due to my resources (Codecademy and Fireship.io)
