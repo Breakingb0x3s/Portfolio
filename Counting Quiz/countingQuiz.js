@@ -98,6 +98,7 @@ const numLimit = () =>{
 
     buttonEngage();
     countingNumber();
+    document.getElementById('Sully').innerHTML = '<img src="../img/Sully_thinking.jpg"></div>'
     document.getElementById('course').hidden = true;
     //Will need to add a trigger to have the game load another function to start the game
 }
@@ -135,7 +136,11 @@ let countingNumber = ()=>{
     }
     generateDots();
 
-    document.getElementById('communication').innerHTML = "What number comes next?";
+    if(skipNumber > 1){
+        document.getElementById('communication').innerHTML = "What number comes next? Remember, we're skip counting by " + skipNumber;
+    }else{
+        document.getElementById('communication').innerHTML = "What number comes next?";
+    }
     //Below generates the answer to the current problem and two unique incorrect answers.
     let answer, guess1, guess2;
     answer = currentNumber + (1 * skipNumber);
@@ -227,18 +232,20 @@ let numberGuess = ()=>{
         document.getElementById("cA").innerHTML = greenScore;
         numberPool.splice(numberPool.indexOf((document.getElementById("promptPort").innerHTML * 1)), 1);
         if(goalLimit == greenScore){
+            document.getElementById('Sully').innerHTML = '<img src="../img/Sully_win.jpg"></div>'
             alert('You Did it! You got ' + goalLimit + ' correct!');
             document.getElementById('start').addEventListener('click', numLimit);
             document.getElementById('start').innerHTML = "Let's begin";
             document.getElementById('start').removeAttribute("class", "activeButton");
             document.getElementById("guessDisplay").innerHTML = "";
-            document.getElementById('communication').innerHTML = "Want to try again?";
+            document.getElementById('communication').innerHTML = "Awesome job! Want to try again?";
             document.getElementById('start').removeEventListener('click', numberGuess);
             document.getElementById('random').checked = false;
             document.getElementById('sequential').checked = false;
             document.getElementById('skipCount').checked = false;
             document.getElementById('course').hidden = false;
             document.getElementById('skip').hidden = true;
+            document.getElementById('skipBy').value = 1;
             newGame = true;
         }else{
             alert('Good job!');
@@ -248,11 +255,12 @@ let numberGuess = ()=>{
         redScore += 1;
         document.getElementById("bA").innerHTML = redScore;
         if(failLimit == redScore){
+            document.getElementById('Sully').innerHTML = '<img src="../img/Sully_fail.jpg"></div>'
             alert("Let's practice our counting and try again later");
             document.getElementById('start').addEventListener('click', numLimit);
             document.getElementById('start').innerHTML = "Let's begin";
             document.getElementById('start').removeAttribute("class", "activeButton");
-            document.getElementById('communication').innerHTML = "Want to try again?"
+            document.getElementById('communication').innerHTML = "It's okay, we'll do better next time. Want to try again?"
             document.getElementById('start').removeEventListener('click', numberGuess);
             document.getElementById("guessDisplay").innerHTML = "";
             document.getElementById('random').checked = false;
@@ -260,6 +268,7 @@ let numberGuess = ()=>{
             document.getElementById('skipCount').checked = false;
             document.getElementById('course').hidden = false;
             document.getElementById('skip').hidden = true;
+            document.getElementById('skipBy').value = 1;
             newGame = true;
         }else{
             alert('Not quite. You can only miss ' + (failLimit - redScore) + ' more questions');
