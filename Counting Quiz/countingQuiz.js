@@ -1,14 +1,41 @@
 const start = document.getElementById('start');
 const questionDots = document.getElementById('qdot');
+const sCount = document.getElementsByName('courseSelect');
+const startButton = document.getElementById('start');
+const skipB = document.getElementById('skipCount');
 
 let numberPool = [];
 let guessPool = [];
-let failLimit, goalLimit, cLimit;
+let newGame = true;
+let countMode = "random";
+let failLimit, goalLimit, cLimit, skipNumber;
 
 //The numLimit function is to determine how many correct guesses need to be made to win.  The game will enter a fail state and reset if 2 more wrong answers than the number of correct answers are tallied.
+//Below is a for loop and function to make sure the user has selected a course and to make the number select for the skip counting feature visible if selected.
+for(let a = 0; a < sCount.length; a++){
+    sCount[a].onclick = userChoice;
+};
+
+function userChoice(){
+    if(this.value == "skipCount"){
+        if(skipB.checked == true){
+            document.getElementById('skip').hidden = false;
+        }else{
+            document.getElementById('skip').hidden = true;
+        }
+    }else if(this.value == "sequential"){
+        countMode = "sequential";
+        startButton.disabled = false;
+    }else if(this.value == "random"){
+        countMode = "random";
+        startButton.disabled = false;
+    }
+};
+
 const numLimit = () =>{
     numberPool = [];
     guessPool = [];
+    skipNumber = document.getElementById('skipBy').value;
     let numQuestions= Number(window.prompt("How many numbers would you like to count?  Please choose a number between 3 and 10.", 3));
 
     if(numQuestions < 3){
@@ -71,16 +98,30 @@ const numLimit = () =>{
 
     buttonEngage();
     countingNumber();
+    document.getElementById('course').hidden = true;
     //Will need to add a trigger to have the game load another function to start the game
 }
 
 let countingNumber = ()=>{
     //Current stoping point as of 5/15. This function will generate the number and the guesses (2 wrong and 1 right guess) for what comes after the generated number
     document.getElementById("guessDisplay").innerHTML = ""; //Reset's the guess display for each roll.
+    let currentNumber;
     let numberSelect = Math.floor(Math.random() * (numberPool.length - 1));  //Generates a valid index number to select from numberPool
-    let currentNumber = numberPool[numberSelect];
-    
-    document.getElementById('promptPort').innerHTML = currentNumber;
+    if(newGame === true){
+        currentNumber = numberPool[numberSelect];
+        document.getElementById('promptPort').innerHTML = currentNumber;
+        newGame = false;
+    }else{
+        if(countMode == "sequential"){
+            currentNumber = (document.getElementById('promptPort').innerHTML * 1) + (1 * skipNumber);
+            document.getElementById('promptPort').innerHTML = currentNumber;
+            console.log(currentNumber);
+        }else if(countMode == "random"){
+            currentNumber = numberPool[numberSelect];
+            document.getElementById('promptPort').innerHTML = currentNumber;
+        }
+    }
+        
 
     let generateDots = () =>{
         document.getElementById('qdot').innerHTML = "";
@@ -97,7 +138,7 @@ let countingNumber = ()=>{
     document.getElementById('communication').innerHTML = "What number comes next?";
     //Below generates the answer to the current problem and two unique incorrect answers.
     let answer, guess1, guess2;
-    answer = currentNumber + 1;
+    answer = currentNumber + (1 * skipNumber);
     do{
         let badGuess1 = Math.floor(Math.random() * (numberPool.length - 1));
         guess1 = guessPool[badGuess1];
@@ -152,7 +193,6 @@ let countingNumber = ()=>{
             hDot.setAttribute("class", colorDots[randomColor3]);
             document.getElementById('dDot').appendChild(hDot.cloneNode(true));
         }
-        console.log(colorDots.length);
     }
 
     if(document.getElementById("scoreBoard").childElementCount == 0){
@@ -194,6 +234,12 @@ let numberGuess = ()=>{
             document.getElementById("guessDisplay").innerHTML = "";
             document.getElementById('communication').innerHTML = "Want to try again?";
             document.getElementById('start').removeEventListener('click', numberGuess);
+            document.getElementById('random').checked = false;
+            document.getElementById('sequential').checked = false;
+            document.getElementById('skipCount').checked = false;
+            document.getElementById('course').hidden = false;
+            document.getElementById('skip').hidden = true;
+            newGame = true;
         }else{
             alert('Good job!');
             countingNumber();
@@ -209,6 +255,12 @@ let numberGuess = ()=>{
             document.getElementById('communication').innerHTML = "Want to try again?"
             document.getElementById('start').removeEventListener('click', numberGuess);
             document.getElementById("guessDisplay").innerHTML = "";
+            document.getElementById('random').checked = false;
+            document.getElementById('sequential').checked = false;
+            document.getElementById('skipCount').checked = false;
+            document.getElementById('course').hidden = false;
+            document.getElementById('skip').hidden = true;
+            newGame = true;
         }else{
             alert('Not quite. You can only miss ' + (failLimit - redScore) + ' more questions');
             countingNumber();

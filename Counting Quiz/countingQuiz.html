@@ -6,7 +6,15 @@
     </head>
     <body>
         <center><h1>Welcome to Sully's Counting Quiz!</h1>
-
+        <div id="course"><form><input type="radio" name="courseSelect" id="random" value="random">
+            <label for="random">Random Count</label>
+        <input type="radio" name="courseSelect" id="sequential" value="sequential">
+            <label for="sequential">Sequential</label>
+        <input type="checkbox" name="courseSelect" id="skipCount" value="skipCount">
+            <label for="skipCount">Skip Counting?</label>
+        </form>
+        <div id="skip" hidden="true"><form><label for="skipBy"></label>
+            <input type="number" id="skipBy" name="skipBy" min="1" max="10" value="1"/></form></div></div>
         <div class="container" id="mainDisplay">
             <div class="qnumber" id="promptPort"></div>
             <div class ="dotContainer" id="qdot"></div>
@@ -18,7 +26,7 @@
             <div id="scoreBoard"></div>
         </div>
 
-        <button id="start">Let's begin</button></center>
+        <button id="start" disabled="true">Let's begin</button></center>
         <a href="../index.html"><img id="home" src="../img/115906251.png"></a>
         <script src ="./countingQuiz.js"></script>
     </body>
