@@ -70,6 +70,11 @@
     flex-direction: row;
 }
 
+#Sully img{
+    max-width: 50%;
+    max-height: 50%;
+}
+
 .score{
     font-size: 14px;
     font-weight: bolder;
@@ -120,6 +125,9 @@
 
 #start:hover{
     border-color: black;
+    background-color: aquamarine;
+    transform: scale(1.4);
+    transition: 1.2s;
 }
 
 .input[type='radio']{

@@ -7,7 +7,7 @@ const skipB = document.getElementById('skipCount');
 let numberPool = [];
 let guessPool = [];
 let newGame = true;
-let countMode = "random";
+let countMode = "";
 let failLimit, goalLimit, cLimit, skipNumber;
 
 //The numLimit function is to determine how many correct guesses need to be made to win.  The game will enter a fail state and reset if 2 more wrong answers than the number of correct answers are tallied.
@@ -32,6 +32,7 @@ function userChoice(){
     }
 };
 
+//Known issue with numLimit as of 7/9/24, if skip counting is being implemented, then the answers CAN exceed the upperLimit but the false questions cannot.  This can be remedied through a couple of methods (limiting the starting number to not exceed the upper limit if skip counting is selected, or by increasing the guessing Pool if skip counting is selected).  I don't think I need to worry about this as is given the current expected demographic is from ages 4 - 7 (mabey 8 but I don't know what modern school expectations are)
 const numLimit = () =>{
     numberPool = [];
     guessPool = [];
@@ -108,6 +109,7 @@ let countingNumber = ()=>{
     document.getElementById("guessDisplay").innerHTML = ""; //Reset's the guess display for each roll.
     let currentNumber;
     let numberSelect = Math.floor(Math.random() * (numberPool.length - 1));  //Generates a valid index number to select from numberPool
+    //Had to add a boolean to tell if the game is just starting, which if true will turn the boolean off.  I also included a countMode to determine the type of counting occuring.  Fortunately by making skipNumber a default of 1, this allows the script to always account for skipNumber even if it's value is 1.
     if(newGame === true){
         currentNumber = numberPool[numberSelect];
         document.getElementById('promptPort').innerHTML = currentNumber;
@@ -136,6 +138,7 @@ let countingNumber = ()=>{
     }
     generateDots();
 
+    //Altered the text if skip counting is enabled as a reminder.
     if(skipNumber > 1){
         document.getElementById('communication').innerHTML = "What number comes next? Remember, we're skip counting by " + skipNumber;
     }else{
@@ -246,6 +249,7 @@ let numberGuess = ()=>{
             document.getElementById('course').hidden = false;
             document.getElementById('skip').hidden = true;
             document.getElementById('skipBy').value = 1;
+            startButton.disabled = true;
             newGame = true;
         }else{
             alert('Good job!');
@@ -269,6 +273,7 @@ let numberGuess = ()=>{
             document.getElementById('course').hidden = false;
             document.getElementById('skip').hidden = true;
             document.getElementById('skipBy').value = 1;
+            startButton.disabled = true;
             newGame = true;
         }else{
             alert('Not quite. You can only miss ' + (failLimit - redScore) + ' more questions');
