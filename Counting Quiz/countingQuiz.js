@@ -176,7 +176,7 @@ let countingNumber = ()=>{
     } while (responses.length > 0);
 
     let guessDots = () =>{
-        let colorDots = ["adot", "bdot", "cdot", "ddot", "edot", "fdot"];
+        let colorDots = ["adot", "bdot", "cdot", "ddot", "edot", "fdot", "gdot"];
         let randomColor, randomColor2, randomColor3;
         do{
             randomColor = Math.floor(Math.random() * (colorDots.length - 1));

@@ -38,6 +38,10 @@
     background-color: rgb(21, 198, 221);
 }
 
+.gdot{
+    background-color: rgb(255, 66, 239);
+}
+
 .guess{
     max-width: 210px;
     margin: 0 auto;
