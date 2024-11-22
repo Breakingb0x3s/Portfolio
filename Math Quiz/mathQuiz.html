@@ -5,12 +5,15 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://breakingb0x3s.github.io/Portfolio/Math Quiz/mathQuiz.css">
+        <link rel="stylesheet" href="mathQuiz.css">
     </head>
     <body>
         <h1>Breakingb0x3s Math Quiz</h1>
         <div id="selection">
             <label for="operation">Choose a math operation</label>
+            <div id="multiSelect">
+            <label for="twoRanges">Set ranges for both numbers?</label>
+            <input type="checkbox" name="twoRanges" id="twoVar"></div> 
 
             <select name="operation" id="operation">
                 <option value="addition">Addition</option>
@@ -19,8 +22,14 @@
                 <option value="division">Division</option>
             </select>
             <br><br>
-            <label for="maxNum">Please enter a number greater than 0</label>
-            <input type="text" id="maxNum" name="maxNum">
+            <label for="maxNum" id="maxNumLabel">Please enter a number greater than 0</label>
+            <input type="text" id="maxNum" name="maxNum" class="rangeInput">
+            <br>
+            <div id="controlTwo" class="copy" hidden ="true">
+            <label for="maxNumTwo" id="maxNumTwoLabel" class="copy">Please enter a max number for the second number (still greater than 0)</label>
+            <br>
+            <input type="text" id="maxNumTwo" class="copy"></div>
+            <br>
             <br>
             <button id="startQ">Get Started</button>
         </div>
@@ -34,6 +43,6 @@
             <div id="highScore">Highscores:</div>
         </div>
         <a href="https://breakingb0x3s.github.io/Portfolio/index.html"><img id="home" src="https://breakingb0x3s.github.io/Portfolio/img/115906251.png"></a>
-        <script src="https://breakingb0x3s.github.io/Portfolio/Math Quiz/mathQuiz.js"></script>
+        <script src="./mathQuiz.js"></script>
     </body>
 </html>

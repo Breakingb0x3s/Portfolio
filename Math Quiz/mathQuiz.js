@@ -1,7 +1,23 @@
 let quiz = document.getElementById('quiz');
 const start = document.getElementById('startQ');
 const solve = document.getElementById('solve');
+const multiSelect = document.getElementById('twoVar')
+let mCheck = false;
 let counter = 1;
+
+function revealTwo(){
+    if(multiSelect.checked){
+        document.getElementById('controlTwo').hidden = false;
+        mCheck = true;
+
+    }
+    else{
+        document.getElementById('controlTwo').hidden = true;
+        mCheck = false;
+    }
+}
+
+multiSelect.addEventListener('click', revealTwo);
 
 //Generate Quiz Section
 let generateQuiz = () =>{
@@ -9,6 +25,7 @@ let generateQuiz = () =>{
     //Fixed the issue, maxNum was being treated as a string, so now when the value is captured it's multiplied by 1 to convert it to a number.
     const operation = document.getElementById('operation').value;
     //Subtraction wasn't working with the variables q (for question) and an (for answer) so I changed their scope to be within the function instead of the switch statement
+    const maxNum2 = document.getElementById('maxNumTwo').value * 1;
     let problem;
     let q;
     let an;
@@ -18,75 +35,149 @@ let generateQuiz = () =>{
     quiz.innerHTML = "";
     solve.disabled = false;
 
-    if(maxNum <= 0){
-        alert("Please make sure you've entered a max Value greater than 0 and have chosen an operation.")
-    }else{
-        switch(operation){
-            case 'addition':
-                for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * (maxNum+1)); //Using maxNum + 1 doesn't work, and neither does numMax++ need to really fix it somehow
-                    b = Math.floor(Math.random() * (maxNum+1));
-                    q = a + ' + ' + b + ' = ';
-                    an = a + b;
-                    problem = document.createElement('div');
-                    problem.setAttribute("id", "problem"); //Okay, the code below works, so I decided not to number the problem divs since it'll make CSS a lot more simple
-                    //Below will create a numbered div for each of the 5 problems uising a for loop.  I set it up this way so in the future if I want I can easily expand beyond 5 problems.
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>'
-                    quiz.appendChild(problem);
-                }
-                break;
-            case 'subtraction':
-                for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * (maxNum+1));
-                    b = Math.floor(Math.random() * (maxNum+1));
-
-                    if(a > b){
-                        q = a + ' - ' + b + ' = ';
-                        an = a - b;
-                    }else{
-                        q = b + ' - ' + a + ' = ';
-                        an = b - a;
+    if(mCheck == false){
+        if(maxNum <= 0){
+            alert("Please make sure you've entered a max Value greater than 0 and have chosen an operation.")
+            timer = false;
+        }else{
+            switch(operation){
+                case 'addition':
+                    for(let i = 0; i < 5; i++){
+                        a = Math.floor(Math.random() * (maxNum+1)); //Using maxNum + 1 doesn't work, and neither does numMax++ need to really fix it somehow
+                        b = Math.floor(Math.random() * (maxNum+1));
+                        q = a + ' + ' + b + ' = ';
+                        an = a + b;
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem"); //Okay, the code below works, so I decided not to number the problem divs since it'll make CSS a lot more simple
+                        //Below will create a numbered div for each of the 5 problems uising a for loop.  I set it up this way so in the future if I want I can easily expand beyond 5 problems.
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>'
+                        quiz.appendChild(problem);
                     }
+                    break;
+                case 'subtraction':
+                    for(let i = 0; i < 5; i++){
+                        a = Math.floor(Math.random() * (maxNum+1));
+                        b = Math.floor(Math.random() * (maxNum+1));
 
-                    problem = document.createElement('div');
-                    problem.setAttribute("id", "problem");
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
-                    quiz.appendChild(problem);
-                }
-                break;
-            case 'multiplication':
-                for(let i = 0; i < 5; i++){
-                    a = Math.floor(Math.random() * (maxNum+1));
-                    b = Math.floor(Math.random() * (maxNum+1));
-                    q = a + ' x ' + b + ' = '; //Might change x to *, unsure
-                    an = a * b;
-                    problem = document.createElement('div');
-                    problem.setAttribute("id", "problem");
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
-                    quiz.appendChild(problem);
-                }
-                break;
-            case 'division':
-                for(let i = 0; i < 5; i++){
-                    b = Math.floor(Math.random() * (maxNum+1));
-                    if(b < 11){
-                        a = Math.floor(Math.random() * 13) * b;
-                    }else{
-                        a = Math.floor(Math.random() * 6) * b; //Division settings are set for beginner levels, also set to insure there are whole number answers, may change this in the future
+                        if(a > b){
+                            q = a + ' - ' + b + ' = ';
+                            an = a - b;
+                        }else{
+                            q = b + ' - ' + a + ' = ';
+                            an = b - a;
+                        }
+
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem");
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
+                        quiz.appendChild(problem);
                     }
-                    q = a + ' ÷ ' + b + ' = '
-                    an = a / b;
-                    problem = document.createElement('div');
-                    problem.setAttribute("id", "problem");
-                    problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
-                    quiz.appendChild(problem);
-                }
-                break;
-            default: alert("This operation has not been coded yet.")
+                    break;
+                case 'multiplication':
+                    for(let i = 0; i < 5; i++){
+                        a = Math.floor(Math.random() * (maxNum+1));
+                        b = Math.floor(Math.random() * (maxNum+1));
+                        q = a + ' x ' + b + ' = '; //Might change x to *, unsure
+                        an = a * b;
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem");
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
+                        quiz.appendChild(problem);
+                    }
+                    break;
+                case 'division':
+                    for(let i = 0; i < 5; i++){
+                        b = Math.floor(Math.random() * (maxNum+1));
+                        if(b < 11){
+                            a = Math.floor(Math.random() * 13) * b;
+                        }else{
+                            a = Math.floor(Math.random() * 6) * b; //Division settings are set for beginner levels, also set to insure there are whole number answers, may change this in the future
+                        }
+                        q = a + ' ÷ ' + b + ' = '
+                        an = a / b;
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem");
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
+                        quiz.appendChild(problem);
+                    }
+                    break;
+                default: alert("This operation has not been coded yet.")
+            }
         }
-    }
     
-}
+    //Added the ability to control the 'b' vairable (the second number in equations) so that Sabi can help Rosella with her homework.  Had a difficult time trying to get the check box to work and still have not got the web page to reset all values when refreshed but it is working (with some manual work on the users end).  I'll have to do some more tweaking to get this up to snuff but it's a good progression of this tool.
+    }else{
+        if(maxNum2 <= 0){
+            alert("Please make sure you've entered a max Value greater than 0 and have chosen an operation.")
+            timer = false;
+        }else{
+            switch(operation){
+                case 'addition':
+                    for(let i = 0; i < 5; i++){
+                        a = Math.floor(Math.random() * (maxNum+1)); //Using maxNum + 1 doesn't work, and neither does numMax++ need to really fix it somehow
+                        b = Math.floor(Math.random() * (maxNum2+1));
+                        q = a + ' + ' + b + ' = ';
+                        an = a + b;
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem"); //Okay, the code below works, so I decided not to number the problem divs since it'll make CSS a lot more simple
+                        //Below will create a numbered div for each of the 5 problems uising a for loop.  I set it up this way so in the future if I want I can easily expand beyond 5 problems.
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>'
+                        quiz.appendChild(problem);
+                    }
+                    break;
+                case 'subtraction':
+                    for(let i = 0; i < 5; i++){
+                        a = Math.floor(Math.random() * (maxNum+1));
+                        b = Math.floor(Math.random() * (maxNum2+1));
+
+                        if(a > b){
+                            q = a + ' - ' + b + ' = ';
+                            an = a - b;
+                        }else{
+                            q = b + ' - ' + a + ' = ';
+                            an = b - a;
+                        }
+
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem");
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
+                        quiz.appendChild(problem);
+                    }
+                    break;
+                case 'multiplication':
+                    for(let i = 0; i < 5; i++){
+                        a = Math.floor(Math.random() * (maxNum+1));
+                        b = Math.floor(Math.random() * (maxNum2+1));
+                        q = a + ' x ' + b + ' = '; //Might change x to *, unsure
+                        an = a * b;
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem");
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
+                        quiz.appendChild(problem);
+                    }
+                    break;
+                case 'division':
+                    for(let i = 0; i < 5; i++){
+                        b = Math.floor(Math.random() * (maxNum2+1));
+                        if(b < 15){
+                            a = Math.floor(Math.random() * 13) * b;
+                        }else{
+                            a = Math.floor(Math.random() * 6) * b; //Division settings are set for beginner levels, also set to insure there are whole number answers, may change this in the future
+                        }
+                        q = a + ' ÷ ' + b + ' = '
+                        an = a / b;
+                        problem = document.createElement('div');
+                        problem.setAttribute("id", "problem");
+                        problem.innerHTML = '<div id ="question' + i + '">' + q + '</div><input type="text" id="sol' + i + '" name="sol' + i + '"><div hidden id="answer' + i +'">' + an + '</div>';
+                        quiz.appendChild(problem);
+                    }
+                    break;
+                default: alert("This operation has not been coded yet.")
+            }
+        }
+        
+    }
+    }
 
 
 //Stopwatch Start
@@ -131,7 +222,6 @@ let startStopWatch = () =>{
     }
 }
 //Finished adding the timer, works like it should will have to remember to remove the pause function from the solve button.  Solve button is the next step to code.
-
 
 start.addEventListener('click', function(){
     timer = true;

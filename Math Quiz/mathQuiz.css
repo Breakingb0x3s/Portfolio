@@ -16,10 +16,12 @@ h1, #highScore{
     align-items: center;
 }
 
-#selection #operation, #selection #maxNum, #startQ, #solve{
+#selection #operation, .rangeInput, #startQ, #solve, #maxNumTwoLabel, #maxNumLabel, .copy{
     width: 20em;
     border-radius: 15px;
     text-align: center;
+    margin-top: 1.2em;
+    margin-bottom: 0.8em;
 }
 
 #home{
