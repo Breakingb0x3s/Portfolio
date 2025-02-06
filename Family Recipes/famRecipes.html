@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Family Collection of Recipes</title>
+    </head>
+    <body>
+        <center><h1>Welcome to the Family Recipe Library</h1></center>
+        <br>
+        <!--<div id="cookIcon"></div> This is for when I have an image to add for this project-->
+        <div id="mealType">
+            <label for="mType">Select a type of meal</label>
+            <br>
+            <select name="mType" id="mType">
+                <option value="all">All recipes</option>
+                <option value="seaFood">Sea Food</option>
+                <option value="fowl">Fowl</option>
+                <option value="beef">Beef</option>
+                <option value="pork">Pork</option>
+                <option value="veggie">Vegitarian</option>
+                <option value="ingredient">Search ingredients</option>
+            </select>
+        </div>
+        <div id="recipeList"></div>
+        <div id="recipeChoices">
+            <button id="shop" disabled>Create Shopping List</button>
+            <button id="size" disabled>Adjust serving size</button>
+        </div>
+    </body>
+</html>
