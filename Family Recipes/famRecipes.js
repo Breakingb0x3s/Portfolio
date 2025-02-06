@@ -1,4 +1,5 @@
 let recipeList = [];
+//Structure of recipe objects. recipeIngredients will work as follows, name of the ingredient, followed by an amount, followed by measurement.  All ingredients will be kept as simple as reasonable and the measurements will also be kept standardized by currently as strings: ie) tbsp = tablespoons, tsp = teaspoons, lbs = pounds and so on and so forth.  If items are not given a traditional measurement (like descriptions of: 'to taste', or 'slices') those will be measured as whole items of that. ie) salt to taste will instead have the second item in the array = taste.  Similarly if an item calls for lemon juice or lime slices those will be denoted by a call of a number of that item instead of slices or juice amounts.
 const herbChickenZ = {
     recipeName: 'Garlic Herb Chicken and Zucchini',
     recipeIngredients: [['chicken', 1, 'lbs'], ['salt', 'taste'], ['black pepper', 'taste'], ['butter', 2, 'tbsp'], ['garlic cloves', 2], ['oregano', 0.5, 'tbsp'], ['thyme', 0.5, 'tbsp'], ['zucchini', 0.5, 'cups'], ['cooking wine', 2, 'tbsp'], ['lemon', 1], ['italian parsley', 0.5, 'tbsp']],
