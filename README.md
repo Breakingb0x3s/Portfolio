@@ -46,3 +46,4 @@ Have been getting more coding done, I just wanted to make a checklist of things 
 3. Actually finish the Portal parody website
 4. Redesign the base Portfolio page, and choose a better color scheme.
 5. Better CSS spacing for my previous projects
+6. Need to have the JS files reset when the page is refreshed
